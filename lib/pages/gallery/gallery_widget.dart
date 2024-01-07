@@ -1,9 +1,12 @@
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'gallery_model.dart';
 export 'gallery_model.dart';
 
@@ -25,11 +28,13 @@ class _GalleryWidgetState extends State<GalleryWidget>
     super.initState();
     _model = createModel(context, () => GalleryModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Gallery'});
     _model.tabBarController = TabController(
       vsync: this,
-      length: 5,
+      length: 1,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -50,6 +55,8 @@ class _GalleryWidgetState extends State<GalleryWidget>
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -67,17 +74,6 @@ class _GalleryWidgetState extends State<GalleryWidget>
                     child: TabBarView(
                       controller: _model.tabBarController,
                       children: [
-                        Container(),
-                        Container(),
-                        Container(),
-                        Text(
-                          'Tab View 4',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 32.0,
-                                  ),
-                        ),
                         Container(),
                       ],
                     ),
@@ -101,50 +97,416 @@ class _GalleryWidgetState extends State<GalleryWidget>
                       elevation: 0.0,
                       buttonMargin:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                      padding: const EdgeInsets.all(4.0),
                       tabs: const [
-                        Tab(
-                          text: 'Corporate',
-                        ),
-                        Tab(
-                          text: 'Wedding',
-                        ),
-                        Tab(
-                          text: 'Parties',
-                        ),
                         Tab(
                           text: 'Gallery',
                         ),
-                        Tab(
-                          text: 'Services',
-                        ),
                       ],
                       controller: _model.tabBarController,
+                      onTap: (i) async {
+                        [() async {}][i]();
+                      },
                     ),
                   ),
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.00, -1.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 3.0, 0.0),
+                  child: GridView(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+                      childAspectRatio: 1.0,
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, -1.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'GALLERY_PAGE_Image_uz9i67de_ON_TAP');
+                            logFirebaseEvent('Image_expand_image');
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: FlutterFlowExpandedImageView(
+                                  image: Image.asset(
+                                    'assets/images/MicrosoftTeams-image_(9).jpg',
+                                    fit: BoxFit.contain,
+                                  ),
+                                  allowRotation: false,
+                                  tag: 'imageTag1',
+                                  useHeroAnimation: true,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: 'imageTag1',
+                            transitionOnUserGestures: true,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/MicrosoftTeams-image_(9).jpg',
+                                width: 300.0,
+                                height: 200.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_8dlgopej_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(8).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag2',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag2',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(8).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_jd981f3i_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(7).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag3',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag3',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(7).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_n0vvukn9_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(6).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag4',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag4',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(6).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_5afj1myj_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(5).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag5',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag5',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(5).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_crw7xsa4_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(4).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag6',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag6',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(4).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_ym6a9otl_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(3).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag7',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag7',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(3).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_bbgdlzjv_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(2).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag8',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag8',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(2).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_rp2ghgvn_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(1).jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag9',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag9',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(1).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-1.0, -1.0),
                 child: FlutterFlowIconButton(
                   borderColor: FlutterFlowTheme.of(context).primary,
                   borderRadius: 20.0,
                   borderWidth: 1.0,
                   buttonSize: 40.0,
-                  fillColor: FlutterFlowTheme.of(context).accent1,
+                  fillColor: Colors.white,
                   icon: Icon(
                     Icons.chevron_left,
                     color: FlutterFlowTheme.of(context).primaryText,
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    context.pushNamed('LandingPageCopy');
+                    logFirebaseEvent('GALLERY_PAGE_chevron_left_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
+
+                    context.pushNamed('LandingPage');
                   },
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.10, -1.11),
+                alignment: const AlignmentDirectional(-0.1, -1.11),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -156,10 +518,38 @@ class _GalleryWidgetState extends State<GalleryWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.00, -1.00),
-                child: Text(
-                  'Gallery',
-                  style: FlutterFlowTheme.of(context).bodyMedium,
+                alignment: const AlignmentDirectional(-0.01, 0.74),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      logFirebaseEvent(
+                          'GALLERY_VISIT_WHISTLINGWOODZ_EVENTS_FOR_');
+                      logFirebaseEvent('Button_launch_u_r_l');
+                      await launchURL(
+                          'https://whistlingwoodz.com.au/photo-gallery');
+                    },
+                    text: 'Visit Whistlingwoodz Events for more',
+                    options: FFButtonOptions(
+                      width: 400.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF010000),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
                 ),
               ),
             ],

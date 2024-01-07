@@ -13,26 +13,30 @@ class CorporateModel extends FlutterFlowModel<CorporateWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
-  // State field(s) for DropDown widget.
-  String? dropDownValue3;
-  FormFieldController<String>? dropDownValueController3;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue4;
-  FormFieldController<String>? dropDownValueController4;
+  // State field(s) for themePick widget.
+  String? themePickValue;
+  FormFieldController<String>? themePickValueController;
+  // State field(s) for functionPick widget.
+  String? functionPickValue;
+  FormFieldController<String>? functionPickValueController;
+  // State field(s) for venuePick widget.
+  String? venuePickValue;
+  FormFieldController<String>? venuePickValueController;
+  // State field(s) for venueOther widget.
+  FocusNode? venueOtherFocusNode;
+  TextEditingController? venueOtherController;
+  String? Function(BuildContext, String?)? venueOtherControllerValidator;
+  // State field(s) for numberGuests widget.
+  FocusNode? numberGuestsFocusNode;
+  TextEditingController? numberGuestsController;
+  String? Function(BuildContext, String?)? numberGuestsControllerValidator;
+  // State field(s) for budget widget.
+  String? budgetValue;
+  FormFieldController<String>? budgetValueController;
+  // Stores action output result for [Custom Action - nextDocID] action in Button widget.
+  String? eventID;
+  // Stores action output result for [Custom Action - submitEvent] action in Button widget.
+  String? submissionResult;
 
   /// Initialization and disposal methods.
 
@@ -43,11 +47,11 @@ class CorporateModel extends FlutterFlowModel<CorporateWidget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    venueOtherFocusNode?.dispose();
+    venueOtherController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    numberGuestsFocusNode?.dispose();
+    numberGuestsController?.dispose();
   }
 
   /// Action blocks are added here.

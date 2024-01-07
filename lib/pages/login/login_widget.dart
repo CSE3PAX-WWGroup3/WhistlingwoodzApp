@@ -1,8 +1,10 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -23,11 +25,14 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Login'});
+    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -48,6 +53,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -62,7 +69,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               Opacity(
                 opacity: 0.9,
                 child: Align(
-                  alignment: const AlignmentDirectional(0.00, 0.00),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
@@ -75,7 +82,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.04, -1.14),
+                alignment: const AlignmentDirectional(0.0, -0.89),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -94,13 +101,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
                         child: TextFormField(
-                          controller: _model.textController1,
-                          focusNode: _model.textFieldFocusNode1,
+                          controller: _model.emailAddressController,
+                          focusNode: _model.emailAddressFocusNode,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -138,18 +145,24 @@ class _LoginWidgetState extends State<LoginWidget> {
                             filled: true,
                             fillColor: const Color(0xFF010000),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.textController1Validator
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                          validator: _model.emailAddressControllerValidator
                               .asValidator(context),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       child: TextFormField(
-                        controller: _model.textController2,
-                        focusNode: _model.textFieldFocusNode2,
+                        controller: _model.passwordController,
+                        focusNode: _model.passwordFocusNode,
                         autofocus: true,
                         textInputAction: TextInputAction.done,
                         obscureText: !_model.passwordVisibility,
@@ -202,36 +215,125 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ),
                           ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                            ),
                         maxLength: 14,
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                        validator: _model.textController2Validator
+                        validator: _model.passwordControllerValidator
                             .asValidator(context),
                       ),
                     ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Login',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: const Color(0xFF010000),
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('LOGIN_PAGE_logi_ON_TAP');
+                          logFirebaseEvent('logi_auth');
+                          GoRouter.of(context).prepareAuthEvent();
+
+                          final user = await authManager.signInWithEmail(
+                            context,
+                            _model.emailAddressController.text,
+                            _model.passwordController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          logFirebaseEvent('logi_google_analytics_event');
+                          logFirebaseEvent('login');
+                          logFirebaseEvent('logi_navigate_to');
+
+                          context.pushNamedAuth('LandingPage', context.mounted);
+                        },
+                        text: 'Login',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF010000),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('LOGIN_PAGE_signup_ON_TAP');
+                          logFirebaseEvent('signup_navigate_to');
+
+                          context.pushNamed('CreateAccount');
+
+                          logFirebaseEvent('signup_google_analytics_event');
+                          logFirebaseEvent('sign_up');
+                        },
+                        text: 'Sign Up',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF010000),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('LOGIN_PAGE_resetpass_ON_TAP');
+                          logFirebaseEvent('resetpass_navigate_to');
+
+                          context.pushNamed('PasswordReset');
+                        },
+                        text: 'Reset Password',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF010000),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
                     ),
                   ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),

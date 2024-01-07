@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -71,26 +73,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const LandingPageWidget()
-          : const LandingPageCopyWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? const LandingPageWidget() : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const LandingPageWidget()
-              : const LandingPageCopyWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const LandingPageWidget() : const LoginWidget(),
         ),
         FFRoute(
           name: 'LandingPage',
           path: '/landingPage',
+          requireAuth: true,
           builder: (context, params) => const LandingPageWidget(),
-        ),
-        FFRoute(
-          name: 'Corporate',
-          path: '/corporate',
-          builder: (context, params) => const CorporateWidget(),
         ),
         FFRoute(
           name: 'weddings',
@@ -118,9 +114,104 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'LandingPageCopy',
-          path: '/landingPageCopy',
-          builder: (context, params) => const LandingPageCopyWidget(),
+          name: 'CreateAccount',
+          path: '/createAccount',
+          builder: (context, params) => const CreateAccountWidget(),
+        ),
+        FFRoute(
+          name: 'PasswordReset',
+          path: '/PasswordReset',
+          builder: (context, params) => const PasswordResetWidget(),
+        ),
+        FFRoute(
+          name: 'Corporate',
+          path: '/corporateCopy',
+          builder: (context, params) => const CorporateWidget(),
+        ),
+        FFRoute(
+          name: 'EventSubmission',
+          path: '/eventSubmission',
+          builder: (context, params) => EventSubmissionWidget(
+            eventType: params.getParam('eventType', ParamType.String),
+            email: params.getParam('email', ParamType.String),
+            theme: params.getParam('theme', ParamType.String),
+            venue: params.getParam('venue', ParamType.String),
+            numberGuests: params.getParam('numberGuests', ParamType.String),
+            budget: params.getParam('budget', ParamType.String),
+            eventID: params.getParam('eventID', ParamType.String),
+            functions: params.getParam('functions', ParamType.String),
+            submissionResult:
+                params.getParam('submissionResult', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'Admin',
+          path: '/admin',
+          requireAuth: true,
+          builder: (context, params) => const AdminWidget(),
+        ),
+        FFRoute(
+          name: 'Manager',
+          path: '/manager',
+          requireAuth: true,
+          builder: (context, params) => const ManagerWidget(),
+        ),
+        FFRoute(
+          name: 'OnboardUser',
+          path: '/onboardUser',
+          builder: (context, params) => const OnboardUserWidget(),
+        ),
+        FFRoute(
+          name: 'addNotes',
+          path: '/addNotes',
+          builder: (context, params) => AddNotesWidget(
+            eventID: params.getParam(
+                'eventID', ParamType.DocumentReference, false, ['events']),
+            isManager: params.getParam('isManager', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'Client',
+          path: '/client',
+          builder: (context, params) => const ClientWidget(),
+        ),
+        FFRoute(
+          name: 'ManagerLanding',
+          path: '/managerLanding',
+          builder: (context, params) => const ManagerLandingWidget(),
+        ),
+        FFRoute(
+          name: 'ClientMessage',
+          path: '/clientMessage',
+          builder: (context, params) => const ClientMessageWidget(),
+        ),
+        FFRoute(
+          name: 'sentMessage',
+          path: '/sentMessage',
+          builder: (context, params) => SentMessageWidget(
+            title: params.getParam('title', ParamType.String),
+            message: params.getParam('message', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'ClientLanding',
+          path: '/clientLanding',
+          builder: (context, params) => const ClientLandingWidget(),
+        ),
+        FFRoute(
+          name: 'ClientHelp',
+          path: '/clientHelp',
+          builder: (context, params) => const ClientHelpWidget(),
+        ),
+        FFRoute(
+          name: 'AdminLanding',
+          path: '/adminLanding',
+          builder: (context, params) => const AdminLandingWidget(),
+        ),
+        FFRoute(
+          name: 'ActiveUsers',
+          path: '/activeUsers',
+          builder: (context, params) => const ActiveUsersWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -239,6 +330,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -252,11 +344,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 
@@ -289,7 +378,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/landingPageCopy';
+            return '/login';
           }
           return null;
         },
@@ -313,7 +402,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition
@@ -321,13 +410,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },

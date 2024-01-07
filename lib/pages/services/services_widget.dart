@@ -2,8 +2,10 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'services_model.dart';
 export 'services_model.dart';
 
@@ -25,11 +27,13 @@ class _ServicesWidgetState extends State<ServicesWidget>
     super.initState();
     _model = createModel(context, () => ServicesModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Services'});
     _model.tabBarController = TabController(
       vsync: this,
-      length: 5,
+      length: 1,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -49,6 +53,8 @@ class _ServicesWidgetState extends State<ServicesWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -72,14 +78,14 @@ class _ServicesWidgetState extends State<ServicesWidget>
                           scrollDirection: Axis.vertical,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, -1.00),
+                              alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
                                 borderRadius: 20.0,
                                 borderWidth: 1.0,
                                 buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).accent1,
+                                fillColor: Colors.white,
                                 icon: Icon(
                                   Icons.chevron_left,
                                   color:
@@ -87,27 +93,16 @@ class _ServicesWidgetState extends State<ServicesWidget>
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
-                                  context.pushNamed('LandingPageCopy');
+                                  logFirebaseEvent(
+                                      'SERVICES_PAGE_chevron_left_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_to');
+
+                                  context.pushNamed('LandingPage');
                                 },
                               ),
                             ),
-                            const Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [],
-                            ),
                           ],
                         ),
-                        Container(),
-                        Container(),
-                        Text(
-                          'Tab View 4',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 32.0,
-                                  ),
-                        ),
-                        Container(),
                       ],
                     ),
                   ),
@@ -130,47 +125,93 @@ class _ServicesWidgetState extends State<ServicesWidget>
                       elevation: 0.0,
                       buttonMargin:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                      padding: const EdgeInsets.all(4.0),
                       tabs: const [
-                        Tab(
-                          text: 'Corporate',
-                        ),
-                        Tab(
-                          text: 'Wedding',
-                        ),
-                        Tab(
-                          text: 'Parties',
-                        ),
-                        Tab(
-                          text: 'Gallery',
-                        ),
                         Tab(
                           text: 'Services',
                         ),
                       ],
                       controller: _model.tabBarController,
+                      onTap: (i) async {
+                        [() async {}][i]();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 175.0, 0.0, 0.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 500.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/1648e60fad5f3a508963e9496ceb8e77.jpg',
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.10, -1.11),
+                alignment: const AlignmentDirectional(0.0, -0.97),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
                     width: 324.0,
-                    height: 200.0,
+                    height: 152.0,
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.00, -1.00),
-                child: Text(
-                  'Services',
-                  style: FlutterFlowTheme.of(context).bodyMedium,
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 80.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      logFirebaseEvent(
+                          'SERVICES_CLICK_HERE_FOR_MORE_INFORMATION');
+                      logFirebaseEvent('Button_launch_u_r_l');
+                      await launchURL('https://whistlingwoodz.com.au/services');
+                    },
+                    text: 'Click Here for more information about our services',
+                    options: FFButtonOptions(
+                      width: 400.0,
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF010000),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
                 ),
               ),
             ],

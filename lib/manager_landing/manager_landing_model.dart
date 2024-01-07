@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'landing_page_copy_widget.dart' show LandingPageCopyWidget;
+import 'manager_landing_widget.dart' show ManagerLandingWidget;
 import 'package:flutter/material.dart';
 
-class LandingPageCopyModel extends FlutterFlowModel<LandingPageCopyWidget> {
+class ManagerLandingModel extends FlutterFlowModel<ManagerLandingWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

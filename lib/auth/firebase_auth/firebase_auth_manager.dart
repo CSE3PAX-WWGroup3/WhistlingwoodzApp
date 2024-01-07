@@ -4,7 +4,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../auth_manager.dart';
+import '../../flutter_flow/flutter_flow_util.dart';
 
+import '/backend/backend.dart';
 import 'anonymous_auth.dart';
 import 'apple_auth.dart';
 import 'email_auth.dart';
@@ -41,11 +43,11 @@ class FirebasePhoneAuthManager extends ChangeNotifier {
 class FirebaseAuthManager extends AuthManager
     with
         EmailSignInManager,
-        AnonymousSignInManager,
-        AppleSignInManager,
         GoogleSignInManager,
-        GithubSignInManager,
+        AppleSignInManager,
+        AnonymousSignInManager,
         JwtSignInManager,
+        GithubSignInManager,
         PhoneSignInManager {
   // Set when using phone verification (after phone number is provided).
   String? _phoneAuthVerificationCode;
@@ -55,6 +57,7 @@ class FirebaseAuthManager extends AuthManager
 
   @override
   Future signOut() {
+    logFirebaseEvent("SIGN_OUT");
     return FirebaseAuth.instance.signOut();
   }
 
@@ -65,6 +68,7 @@ class FirebaseAuthManager extends AuthManager
         print('Error: delete user attempted with no logged in user!');
         return;
       }
+      logFirebaseEvent("DELETE_USER");
       await currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
@@ -89,6 +93,7 @@ class FirebaseAuthManager extends AuthManager
         return;
       }
       await currentUser?.updateEmail(email);
+      await updateUserDocument(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -280,13 +285,20 @@ class FirebaseAuthManager extends AuthManager
   ) async {
     try {
       final userCredential = await signInFunc();
+      logFirebaseAuthEvent(userCredential?.user, authProvider);
+      if (userCredential?.user != null) {
+        await maybeCreateUser(userCredential!.user!);
+      }
       return userCredential == null
           ? null
           : WhistlingwoodzFirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
+      final errorMsg = e.message?.contains('auth/email-already-in-use') ?? false
+          ? 'The email is already in use by a different account'
+          : 'Error: ${e.message!}';
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text(errorMsg)),
       );
       return null;
     }

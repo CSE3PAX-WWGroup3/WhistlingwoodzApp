@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1055532309431",
+    "project_id": "wwevent-b8ce3",
+    "storage_bucket": "wwevent-b8ce3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055532309431:android:82c705733aab1a9632e632",
+        "android_client_info": {
+          "package_name": "com.mycompany.whistlingwoodz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Zstvx-agQhUWUHtD0NaivUX2QhLO-SI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

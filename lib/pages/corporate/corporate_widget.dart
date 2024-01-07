@@ -760,7 +760,6 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                   .text;
                                                         });
                                                       },
-                                                      autofocus: true,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(

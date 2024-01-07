@@ -111,7 +111,7 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
                       child: Text(
-                        'Finalise your profile here',
+                        'Create your profile here',
                         style: FlutterFlowTheme.of(context).titleMedium,
                       ),
                     ),

@@ -626,7 +626,6 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                       .text;
                                             });
                                           },
-                                          autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Number Of Guests',

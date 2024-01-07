@@ -115,8 +115,18 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Email Address',
-                            labelStyle: FlutterFlowTheme.of(context).labelSmall,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -148,7 +158,11 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                             filled: true,
                             fillColor: const Color(0xFF010000),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
                           validator: _model.emailAddressControllerValidator
                               .asValidator(context),
                         ),

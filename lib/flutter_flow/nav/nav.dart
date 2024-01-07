@@ -212,6 +212,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ActiveUsers',
           path: '/activeUsers',
           builder: (context, params) => const ActiveUsersWidget(),
+        ),
+        FFRoute(
+          name: 'updateUserProfile',
+          path: '/updateUserProfile',
+          requireAuth: true,
+          builder: (context, params) => UpdateUserProfileWidget(
+            userInformation: params.getParam('userInformation',
+                ParamType.DocumentReference, false, ['users', 'profiles']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

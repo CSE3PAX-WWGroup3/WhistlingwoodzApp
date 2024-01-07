@@ -152,6 +152,12 @@ final parametersBuilderMap =
   'ClientHelp': ParameterData.none(),
   'AdminLanding': ParameterData.none(),
   'ActiveUsers': ParameterData.none(),
+  'updateUserProfile': (data) async => ParameterData(
+        allParams: {
+          'userInformation':
+              getParameter<DocumentReference>(data, 'userInformation'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

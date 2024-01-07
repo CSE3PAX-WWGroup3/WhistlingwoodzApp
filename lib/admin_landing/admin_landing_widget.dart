@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -172,6 +171,35 @@ class _AdminLandingWidgetState extends State<AdminLandingWidget> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'ADMIN_LANDING_PAGE_REPORTS_BTN_ON_TAP');
+                        logFirebaseEvent('Button_launch_u_r_l');
+                        await launchURL(
+                            'https://analytics.google.com/analytics/web/?authuser=1&hl=en#/p415897336/reports/explorer?params=_u..nav%3Dmaui&r=top-events&ruid=top-events,life-cycle,engagement&collectionId=life-cycle');
+                      },
+                      text: 'Reports',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF0E0E0E),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                   ]
                       .divide(const SizedBox(height: 20.0))
                       .addToEnd(const SizedBox(height: 20.0)),
@@ -180,18 +208,6 @@ class _AdminLandingWidgetState extends State<AdminLandingWidget> {
               FFButtonWidget(
                 onPressed: () async {
                   logFirebaseEvent('ADMIN_LANDING_PAGE_LOG_OUT_BTN_ON_TAP');
-                  logFirebaseEvent('Button_backend_call');
-
-                  await currentUserReference!.update({
-                    ...createUsersRecordData(
-                      lastPage: 'Log Out',
-                    ),
-                    ...mapToFirestore(
-                      {
-                        'last_active': FieldValue.serverTimestamp(),
-                      },
-                    ),
-                  });
                   logFirebaseEvent('Button_auth');
                   GoRouter.of(context).prepareAuthEvent();
                   await authManager.signOut();

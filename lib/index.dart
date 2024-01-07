@@ -24,3 +24,5 @@ export '/client_landing/client_landing_widget.dart' show ClientLandingWidget;
 export '/client_help/client_help_widget.dart' show ClientHelpWidget;
 export '/admin_landing/admin_landing_widget.dart' show AdminLandingWidget;
 export '/active_users/active_users_widget.dart' show ActiveUsersWidget;
+export '/update_user_profile/update_user_profile_widget.dart'
+    show UpdateUserProfileWidget;

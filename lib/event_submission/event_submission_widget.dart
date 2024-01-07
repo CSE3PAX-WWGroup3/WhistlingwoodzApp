@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -94,13 +93,12 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                     buttonSize: 40.0,
                     fillColor: FlutterFlowTheme.of(context).primaryBtnText,
                     icon: Icon(
-                      Icons.chevron_left,
+                      Icons.home,
                       color: FlutterFlowTheme.of(context).primaryText,
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      logFirebaseEvent(
-                          'EVENT_SUBMISSION_chevron_left_ICN_ON_TAP');
+                      logFirebaseEvent('EVENT_SUBMISSION_PAGE_home_ICN_ON_TAP');
                       logFirebaseEvent('IconButton_navigate_to');
 
                       context.pushNamed('LandingPage');
@@ -450,14 +448,13 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                     ),
                     onPressed: () async {
                       logFirebaseEvent('EVENT_SUBMISSION_thumb_up_ICN_ON_TAP');
-                      logFirebaseEvent('IconButton_navigate_to');
-
-                      context.pushNamed('LandingPage');
-
                       logFirebaseEvent('IconButton_custom_action');
                       await actions.setFeedback(
                         'positive',
                       );
+                      logFirebaseEvent('IconButton_navigate_to');
+
+                      context.pushNamed('LandingPage');
                     },
                   ),
                   FlutterFlowIconButton(
@@ -489,37 +486,8 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                     .addToStart(const SizedBox(width: 10.0))
                     .addToEnd(const SizedBox(width: 10.0)),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    logFirebaseEvent('EVENT_SUBMISSION_PAGE_EXIT_BTN_ON_TAP');
-                    logFirebaseEvent('Button_navigate_back');
-                    context.safePop();
-                  },
-                  text: 'Exit',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).warning,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: const Color(0xFF0E0E0E),
-                        ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
             ]
-                .divide(const SizedBox(height: 10.0))
+                .divide(const SizedBox(height: 5.0))
                 .addToStart(const SizedBox(height: 10.0))
                 .addToEnd(const SizedBox(height: 10.0)),
           ),

@@ -57,6 +57,16 @@ class _ManagerWidgetState extends State<ManagerWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: AppBar(
+            backgroundColor: const Color(0xFF800306),
+            automaticallyImplyLeading: false,
+            actions: const [],
+            centerTitle: true,
+            elevation: 2.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -84,8 +94,8 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            logFirebaseEvent('MANAGER_PAGE_home_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_to');
+                            logFirebaseEvent('MANAGER_PAGE_Home_ON_TAP');
+                            logFirebaseEvent('Home_navigate_to');
 
                             context.pushNamed('LandingPage');
                           },
@@ -102,9 +112,8 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'MANAGER_PAGE_arrow_back_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_back');
+                            logFirebaseEvent('MANAGER_PAGE_Back_ON_TAP');
+                            logFirebaseEvent('Back_navigate_back');
                             context.safePop();
                           },
                         ),

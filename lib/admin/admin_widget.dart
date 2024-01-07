@@ -221,8 +221,12 @@ class _AdminWidgetState extends State<AdminWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              logFirebaseEvent('ADMIN_PAGE_clear_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_reset_form_fields');
+                              setState(() {
+                                _model.textController?.clear();
+                              });
                             },
                           ),
                         ),
@@ -252,54 +256,87 @@ class _AdminWidgetState extends State<AdminWidget> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: const AlignmentDirectional(1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
-                      child: Text(
-                        '5',
-                        textAlign: TextAlign.end,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
-              StreamBuilder<List<UsersRecord>>(
-                stream: queryUsersRecord(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+              Container(
+                width: 358.0,
+                height: 316.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: StreamBuilder<List<UsersRecord>>(
+                  stream: queryUsersRecord(),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
                           ),
                         ),
-                      ),
+                      );
+                    }
+                    List<UsersRecord> listViewUsersRecordList = snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewUsersRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewUsersRecord =
+                            listViewUsersRecordList[listViewIndex];
+                        return Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 10.0),
+                                child: Text(
+                                  'Hello World',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'ADMIN_PAGE_Icon_6yhj92qo_ON_TAP');
+                                    logFirebaseEvent('Icon_navigate_to');
+
+                                    context.pushNamed('updateUserProfile');
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     );
-                  }
-                  List<UsersRecord> listViewUsersRecordList = snapshot.data!;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewUsersRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewUsersRecord =
-                          listViewUsersRecordList[listViewIndex];
-                      return Container(
-                          width: 100, height: 100, color: Colors.green);
-                    },
-                  );
-                },
+                  },
+                ),
               ),
             ].divide(const SizedBox(height: 10.0)),
           ),

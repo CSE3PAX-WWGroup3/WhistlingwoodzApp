@@ -259,117 +259,120 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       fontSize: 22.0,
                     ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                child: StreamBuilder<List<EventsRecord>>(
-                  stream: queryEventsRecord(
-                    queryBuilder: (eventsRecord) =>
-                        eventsRecord.orderBy('requestTime', descending: true),
-                    limit: 5,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                  child: StreamBuilder<List<EventsRecord>>(
+                    stream: queryEventsRecord(
+                      queryBuilder: (eventsRecord) =>
+                          eventsRecord.orderBy('requestTime', descending: true),
+                      limit: 5,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }
-                    List<EventsRecord> listViewEventsRecordList =
-                        snapshot.data!;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: listViewEventsRecordList.length,
-                      itemBuilder: (context, listViewIndex) {
-                        final listViewEventsRecord =
-                            listViewEventsRecordList[listViewIndex];
-                        return Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Text(
-                                listViewEventsRecord.reference.id,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                    ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Text(
-                                listViewEventsRecord.eventType,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                    ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Text(
-                                listViewEventsRecord.requestTime,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                    ),
-                              ),
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: const Color(0xFF0E0E0E),
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.white,
-                              icon: Icon(
-                                Icons.chevron_right,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'MANAGER_LANDING_chevron_right_ICN_ON_TAP');
-                                logFirebaseEvent('IconButton_navigate_to');
-
-                                context.pushNamed(
-                                  'addNotes',
-                                  queryParameters: {
-                                    'eventID': serializeParam(
-                                      listViewEventsRecord.reference,
-                                      ParamType.DocumentReference,
-                                    ),
-                                    'isManager': serializeParam(
-                                      true,
-                                      ParamType.bool,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                            ),
-                          ]
-                              .addToStart(const SizedBox(width: 5.0))
-                              .addToEnd(const SizedBox(width: 5.0)),
                         );
-                      },
-                    );
-                  },
+                      }
+                      List<EventsRecord> listViewEventsRecordList =
+                          snapshot.data!;
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewEventsRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewEventsRecord =
+                              listViewEventsRecordList[listViewIndex];
+                          return Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  listViewEventsRecord.reference.id,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  listViewEventsRecord.eventType,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  listViewEventsRecord.requestTime,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+                                ),
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor: const Color(0xFF0E0E0E),
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                fillColor: Colors.white,
+                                icon: Icon(
+                                  Icons.chevron_right,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'MANAGER_LANDING_chevron_right_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_navigate_to');
+
+                                  context.pushNamed(
+                                    'addNotes',
+                                    queryParameters: {
+                                      'eventID': serializeParam(
+                                        listViewEventsRecord.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                      'isManager': serializeParam(
+                                        true,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                              ),
+                            ]
+                                .addToStart(const SizedBox(width: 5.0))
+                                .addToEnd(const SizedBox(width: 5.0)),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

@@ -136,7 +136,6 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                       child: TextFormField(
                         controller: _model.messageController,
                         focusNode: _model.messageFocusNode,
-                        autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Please input your message here ,,,,',

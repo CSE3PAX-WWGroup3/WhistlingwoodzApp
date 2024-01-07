@@ -735,7 +735,6 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                         _model.numberGuestsController.text;
                                   });
                                 },
-                                autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Number Of Guests',

@@ -221,6 +221,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             userInformation: params.getParam('userInformation',
                 ParamType.DocumentReference, false, ['users', 'profiles']),
           ),
+        ),
+        FFRoute(
+          name: 'ManagerDashboards',
+          path: '/ManagerDashboards',
+          requireAuth: true,
+          builder: (context, params) => const ManagerDashboardsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

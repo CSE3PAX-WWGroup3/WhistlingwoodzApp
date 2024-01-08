@@ -118,8 +118,12 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                         ),
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'MANAGER_LANDING_MANAGER_DASHBOARD_BTN_ON');
+                          logFirebaseEvent('Button_navigate_to');
+
+                          context.pushNamed('ManagerDashboards');
                         },
                         text: 'Manager Dashboard',
                         options: FFButtonOptions(

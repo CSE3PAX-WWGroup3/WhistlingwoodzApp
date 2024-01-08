@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -333,6 +334,53 @@ class _LoginWidgetState extends State<LoginWidget> {
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'LOGIN_CONTINUE_WITH_GOOGLE_BTN_ON_TAP');
+                          logFirebaseEvent('Button_auth');
+                          GoRouter.of(context).prepareAuthEvent();
+                          final user =
+                              await authManager.signInWithGoogle(context);
+                          if (user == null) {
+                            return;
+                          }
+
+                          context.goNamedAuth('LandingPage', context.mounted);
+                        },
+                        text: 'Continue with Google',
+                        icon: const FaIcon(
+                          FontAwesomeIcons.google,
+                          size: 20.0,
+                        ),
+                        options: FFButtonOptions(
+                          width: 230.0,
+                          height: 44.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Colors.white,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: const Color(0xFF101213),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Color(0xFFE0E3E7),
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(40.0),
+                          hoverColor: const Color(0xFFF1F4F8),
                         ),
                       ),
                     ),

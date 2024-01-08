@@ -370,7 +370,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                           fillColor: Colors.white,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
-                        maxLines: 20,
+                        maxLines: 15,
                         validator: _model.messageControllerValidator
                             .asValidator(context),
                       ),

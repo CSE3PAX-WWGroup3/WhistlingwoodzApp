@@ -32,7 +32,7 @@ class _UpdateUserProfileWidgetState extends State<UpdateUserProfileWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'updateUserProfile'});
-    _model.textController1 ??= TextEditingController();
+
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textFieldFocusNode2 ??= FocusNode();
@@ -109,7 +109,10 @@ class _UpdateUserProfileWidgetState extends State<UpdateUserProfileWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
-                          controller: _model.textController1,
+                          controller: _model.textController1 ??=
+                              TextEditingController(
+                            text: updateUserProfileProfilesRecord.email,
+                          ),
                           focusNode: _model.textFieldFocusNode1,
                           autofocus: true,
                           obscureText: false,

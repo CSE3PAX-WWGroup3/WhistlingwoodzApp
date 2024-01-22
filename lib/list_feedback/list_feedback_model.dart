@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'admin_widget.dart' show AdminWidget;
+import 'list_feedback_widget.dart' show ListFeedbackWidget;
 import 'package:flutter/material.dart';
 
-class AdminModel extends FlutterFlowModel<AdminWidget> {
+class ListFeedbackModel extends FlutterFlowModel<ListFeedbackWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

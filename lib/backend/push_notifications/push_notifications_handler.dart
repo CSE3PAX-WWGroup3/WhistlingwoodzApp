@@ -110,7 +110,6 @@ final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'LandingPage': ParameterData.none(),
   'weddings': ParameterData.none(),
-  'Parties': ParameterData.none(),
   'Gallery': ParameterData.none(),
   'Services': ParameterData.none(),
   'Login': ParameterData.none(),
@@ -159,6 +158,13 @@ final parametersBuilderMap =
         },
       ),
   'ManagerDashboards': ParameterData.none(),
+  'Parties': ParameterData.none(),
+  'viewFeedback': (data) async => ParameterData(
+        allParams: {
+          'feedBackDoc': getParameter<DocumentReference>(data, 'feedBackDoc'),
+        },
+      ),
+  'listFeedback': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

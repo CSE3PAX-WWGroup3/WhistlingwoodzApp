@@ -1,7 +1,6 @@
 // Export pages
 export '/pages/landing_page/landing_page_widget.dart' show LandingPageWidget;
 export '/pages/weddings/weddings_widget.dart' show WeddingsWidget;
-export '/pages/parties/parties_widget.dart' show PartiesWidget;
 export '/pages/gallery/gallery_widget.dart' show GalleryWidget;
 export '/pages/services/services_widget.dart' show ServicesWidget;
 export '/pages/login/login_widget.dart' show LoginWidget;
@@ -29,3 +28,6 @@ export '/update_user_profile/update_user_profile_widget.dart'
     show UpdateUserProfileWidget;
 export '/manager/manager_dashboards/manager_dashboards_widget.dart'
     show ManagerDashboardsWidget;
+export '/pages/parties/parties_widget.dart' show PartiesWidget;
+export '/view_feedback/view_feedback_widget.dart' show ViewFeedbackWidget;
+export '/list_feedback/list_feedback_widget.dart' show ListFeedbackWidget;

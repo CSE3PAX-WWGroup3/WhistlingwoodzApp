@@ -101,7 +101,10 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                   children: [
                     Text(
                       'Reset your password here.',
-                      style: FlutterFlowTheme.of(context).titleMedium,
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: FFAppState().fontSize18,
+                          ),
                     ),
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
@@ -120,12 +123,14 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
+                                  fontSize: FFAppState().fontSize12,
                                 ),
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
+                                  fontSize: FFAppState().fontSize14,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -162,6 +167,7 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
                                   ),
                           validator: _model.emailAddressControllerValidator
                               .asValidator(context),
@@ -202,6 +208,7 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -221,19 +228,18 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                   Align(
                     alignment: const AlignmentDirectional(-1.0, -1.0),
                     child: FlutterFlowIconButton(
-                      borderColor: FlutterFlowTheme.of(context).primary,
+                      borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                       borderRadius: 20.0,
                       borderWidth: 1.0,
                       buttonSize: 40.0,
-                      fillColor: Colors.white,
+                      fillColor: const Color(0xFF0E0E0E),
                       icon: Icon(
-                        Icons.chevron_left,
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        Icons.home,
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 24.0,
                       ),
                       onPressed: () async {
-                        logFirebaseEvent(
-                            'PASSWORD_RESET_chevron_left_ICN_ON_TAP');
+                        logFirebaseEvent('PASSWORD_RESET_PAGE_home_ICN_ON_TAP');
                         logFirebaseEvent('IconButton_navigate_to');
 
                         context.pushNamed('LandingPage');

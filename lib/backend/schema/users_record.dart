@@ -58,11 +58,6 @@ class UsersRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
-  // "gender" field.
-  List<String>? _gender;
-  List<String> get gender => _gender ?? const [];
-  bool hasGender() => _gender != null;
-
   // "dob" field.
   DateTime? _dob;
   DateTime? get dob => _dob;
@@ -88,6 +83,11 @@ class UsersRecord extends FirestoreRecord {
   String get lastPage => _lastPage ?? '';
   bool hasLastPage() => _lastPage != null;
 
+  // "gender" field.
+  String? _gender;
+  String get gender => _gender ?? '';
+  bool hasGender() => _gender != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -97,12 +97,12 @@ class UsersRecord extends FirestoreRecord {
     _isAdmin = snapshotData['isAdmin'] as bool?;
     _isManager = snapshotData['isManager'] as bool?;
     _photoUrl = snapshotData['photo_url'] as String?;
-    _gender = getDataList(snapshotData['gender']);
     _dob = snapshotData['dob'] as DateTime?;
     _firstname = snapshotData['firstname'] as String?;
     _surname = snapshotData['surname'] as String?;
     _lastActive = snapshotData['last_active'] as DateTime?;
     _lastPage = snapshotData['last_page'] as String?;
+    _gender = snapshotData['gender'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -140,9 +140,6 @@ class UsersRecord extends FirestoreRecord {
           'isAdmin': snapshot.data['isAdmin'],
           'isManager': snapshot.data['isManager'],
           'photo_url': snapshot.data['photo_url'],
-          'gender': safeGet(
-            () => snapshot.data['gender'].toList(),
-          ),
           'dob': convertAlgoliaParam(
             snapshot.data['dob'],
             ParamType.DateTime,
@@ -156,6 +153,7 @@ class UsersRecord extends FirestoreRecord {
             false,
           ),
           'last_page': snapshot.data['last_page'],
+          'gender': snapshot.data['gender'],
         },
         UsersRecord.collection.doc(snapshot.objectID),
       );
@@ -205,6 +203,7 @@ Map<String, dynamic> createUsersRecordData({
   String? surname,
   DateTime? lastActive,
   String? lastPage,
+  String? gender,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -221,6 +220,7 @@ Map<String, dynamic> createUsersRecordData({
       'surname': surname,
       'last_active': lastActive,
       'last_page': lastPage,
+      'gender': gender,
     }.withoutNulls,
   );
 
@@ -232,7 +232,6 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.uid == e2?.uid &&
@@ -241,12 +240,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.isAdmin == e2?.isAdmin &&
         e1?.isManager == e2?.isManager &&
         e1?.photoUrl == e2?.photoUrl &&
-        listEquality.equals(e1?.gender, e2?.gender) &&
         e1?.dob == e2?.dob &&
         e1?.firstname == e2?.firstname &&
         e1?.surname == e2?.surname &&
         e1?.lastActive == e2?.lastActive &&
-        e1?.lastPage == e2?.lastPage;
+        e1?.lastPage == e2?.lastPage &&
+        e1?.gender == e2?.gender;
   }
 
   @override
@@ -259,12 +258,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.isAdmin,
         e?.isManager,
         e?.photoUrl,
-        e?.gender,
         e?.dob,
         e?.firstname,
         e?.surname,
         e?.lastActive,
-        e?.lastPage
+        e?.lastPage,
+        e?.gender
       ]);
 
   @override

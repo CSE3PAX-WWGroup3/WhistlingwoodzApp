@@ -18,7 +18,7 @@ class WeddingsModel extends FlutterFlowModel<WeddingsWidget> {
   FormFieldController<String>? themePickValueController;
   // State field(s) for functionPick widget.
   List<String>? functionPickValue;
-  FormFieldController<String>? functionPickValueController;
+  FormFieldController<List<String>>? functionPickValueController;
   // State field(s) for venuePick widget.
   String? venuePickValue;
   FormFieldController<String>? venuePickValueController;
@@ -33,11 +33,11 @@ class WeddingsModel extends FlutterFlowModel<WeddingsWidget> {
   // State field(s) for budget widget.
   String? budgetValue;
   FormFieldController<String>? budgetValueController;
-  // Stores action output result for [Custom Action - nextDocID] action in Button widget.
+  // Stores action output result for [Custom Action - nextDocID] action in Submit widget.
   String? eventID;
-  // Stores action output result for [Custom Action - listToString] action in Button widget.
+  // Stores action output result for [Custom Action - listToString] action in Submit widget.
   String? functions;
-  // Stores action output result for [Custom Action - submitEvent] action in Button widget.
+  // Stores action output result for [Custom Action - submitEvent] action in Submit widget.
   String? submissioResult;
 
   /// Initialization and disposal methods.

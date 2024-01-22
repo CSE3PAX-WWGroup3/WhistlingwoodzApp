@@ -11,23 +11,53 @@ class CreateAccountModel extends FlutterFlowModel<CreateAccountWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  String? _emailAddressControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Invalid email address';
+    }
+    return null;
+  }
+
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
+  String? _passwordControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for passwordConfirm widget.
   FocusNode? passwordConfirmFocusNode;
   TextEditingController? passwordConfirmController;
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
+  String? _passwordConfirmControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
+    emailAddressControllerValidator = _emailAddressControllerValidator;
     passwordVisibility = false;
+    passwordControllerValidator = _passwordControllerValidator;
     passwordConfirmVisibility = false;
+    passwordConfirmControllerValidator = _passwordConfirmControllerValidator;
   }
 
   @override

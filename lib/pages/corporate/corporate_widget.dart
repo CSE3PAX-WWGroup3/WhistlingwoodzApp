@@ -84,6 +84,38 @@ class _CorporateWidgetState extends State<CorporateWidget>
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Column(
                       children: [
+                        Align(
+                          alignment: const Alignment(0.0, 0),
+                          child: FlutterFlowButtonTabBar(
+                            useToggleButtonStyle: true,
+                            labelStyle: FlutterFlowTheme.of(context).labelSmall,
+                            unselectedLabelStyle: const TextStyle(),
+                            labelColor: const Color(0xFFF8FBFC),
+                            unselectedLabelColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            backgroundColor: Colors.black,
+                            unselectedBackgroundColor: Colors.black,
+                            borderColor: const Color(0xFF010000),
+                            unselectedBorderColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            borderWidth: 2.0,
+                            borderRadius: 8.0,
+                            elevation: 0.0,
+                            buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            padding: const EdgeInsets.all(10.0),
+                            tabs: const [
+                              Tab(
+                                text: 'Corporate',
+                                iconMargin: EdgeInsets.all(20.0),
+                              ),
+                            ],
+                            controller: _model.tabBarController,
+                            onTap: (i) async {
+                              [() async {}][i]();
+                            },
+                          ),
+                        ),
                         Expanded(
                           child: TabBarView(
                             controller: _model.tabBarController,
@@ -136,6 +168,8 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryBtnText,
+                                                      fontSize: FFAppState()
+                                                          .fontSize14,
                                                     ),
                                               ),
                                               Align(
@@ -154,7 +188,8 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBtnText,
-                                                          fontSize: 14.0,
+                                                          fontSize: FFAppState()
+                                                              .fontSize14,
                                                         ),
                                                   ),
                                                 ),
@@ -187,7 +222,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
-                                                                fontSize: 14.0,
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -259,7 +296,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        FFAppState()
+                                                                            .fontSize14,
+                                                                  ),
                                                           hintText:
                                                               'Please select...',
                                                           icon: Icon(
@@ -331,7 +375,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
-                                                                fontSize: 14.0,
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -403,7 +449,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        FFAppState()
+                                                                            .fontSize14,
+                                                                  ),
                                                           hintText:
                                                               'Please select...',
                                                           icon: Icon(
@@ -478,6 +531,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -556,7 +612,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          FFAppState()
+                                                                              .fontSize14,
+                                                                    ),
                                                             hintText:
                                                                 'Please select...',
                                                             icon: Icon(
@@ -619,11 +682,21 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                           'Readex Pro',
                                                                       color: const Color(
                                                                           0xFF0E0E0E),
+                                                                      fontSize:
+                                                                          FFAppState()
+                                                                              .fontSize14,
                                                                     ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMedium,
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          FFAppState()
+                                                                              .fontSize14,
+                                                                    ),
                                                             enabledBorder:
                                                                 OutlineInputBorder(
                                                               borderSide:
@@ -731,6 +804,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -774,11 +850,21 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                       'Readex Pro',
                                                                   color: const Color(
                                                                       0xFF0E0E0E),
+                                                                  fontSize:
+                                                                      FFAppState()
+                                                                          .fontSize14,
                                                                 ),
                                                         hintStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium,
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  fontSize:
+                                                                      FFAppState()
+                                                                          .fontSize14,
+                                                                ),
                                                         enabledBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
@@ -844,7 +930,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
+                                                              ),
                                                       validator: _model
                                                           .numberGuestsControllerValidator
                                                           .asValidator(context),
@@ -886,6 +979,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
+                                                                fontSize:
+                                                                    FFAppState()
+                                                                        .fontSize14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -956,7 +1052,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        FFAppState()
+                                                                            .fontSize14,
+                                                                  ),
                                                           hintText:
                                                               'Please select...',
                                                           icon: Icon(
@@ -1167,6 +1270,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                         'Readex Pro',
                                                                     color: const Color(
                                                                         0xFFE6DDDD),
+                                                                    fontSize:
+                                                                        FFAppState()
+                                                                            .fontSize16,
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
@@ -1227,6 +1333,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                       'Readex Pro',
                                                                   color: Colors
                                                                       .white,
+                                                                  fontSize:
+                                                                      FFAppState()
+                                                                          .fontSize16,
                                                                 ),
                                                         elevation: 3.0,
                                                         borderSide: const BorderSide(
@@ -1262,62 +1371,33 @@ class _CorporateWidgetState extends State<CorporateWidget>
                             ],
                           ),
                         ),
-                        Align(
-                          alignment: const Alignment(0.0, 0),
-                          child: FlutterFlowButtonTabBar(
-                            useToggleButtonStyle: true,
-                            labelStyle: FlutterFlowTheme.of(context).labelSmall,
-                            unselectedLabelStyle: const TextStyle(),
-                            labelColor: const Color(0xFFF8FBFC),
-                            unselectedLabelColor:
-                                FlutterFlowTheme.of(context).secondaryText,
-                            backgroundColor: Colors.black,
-                            unselectedBackgroundColor: Colors.black,
-                            borderColor: const Color(0xFF010000),
-                            unselectedBorderColor:
-                                FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 2.0,
-                            borderRadius: 8.0,
-                            elevation: 0.0,
-                            buttonMargin: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            padding: const EdgeInsets.all(10.0),
-                            tabs: const [
-                              Tab(
-                                text: 'Corporate',
-                                iconMargin: EdgeInsets.all(20.0),
-                              ),
-                            ],
-                            controller: _model.tabBarController,
-                            onTap: (i) async {
-                              [() async {}][i]();
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -1.0),
-                child: FlutterFlowIconButton(
-                  borderColor: FlutterFlowTheme.of(context).primary,
-                  borderRadius: 20.0,
-                  borderWidth: 1.0,
-                  buttonSize: 40.0,
-                  fillColor: Colors.white,
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 24.0,
-                  ),
-                  onPressed: () async {
-                    logFirebaseEvent('CORPORATE_PAGE_chevron_left_ICN_ON_TAP');
-                    logFirebaseEvent('IconButton_navigate_to');
+                alignment: const AlignmentDirectional(-0.98, -0.82),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).primaryBtnText,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: const Color(0xFF0E0E0E),
+                    icon: Icon(
+                      Icons.home,
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      logFirebaseEvent('CORPORATE_PAGE_home_ICN_ON_TAP');
+                      logFirebaseEvent('IconButton_navigate_to');
 
-                    context.pushNamed('LandingPage');
-                  },
+                      context.pushNamed('LandingPage');
+                    },
+                  ),
                 ),
               ),
             ],

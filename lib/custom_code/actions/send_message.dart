@@ -15,6 +15,7 @@ String sendMessage(
   String message,
 ) {
   // send email to the audience.
+
   CollectionReference mail = FirebaseFirestore.instance.collection('mail');
 
   mail.doc().set({

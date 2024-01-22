@@ -94,11 +94,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const WeddingsWidget(),
         ),
         FFRoute(
-          name: 'Parties',
-          path: '/parties',
-          builder: (context, params) => const PartiesWidget(),
-        ),
-        FFRoute(
           name: 'Gallery',
           path: '/gallery',
           builder: (context, params) => const GalleryWidget(),
@@ -219,7 +214,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => UpdateUserProfileWidget(
             userInformation: params.getParam('userInformation',
-                ParamType.DocumentReference, false, ['users', 'profiles']),
+                ParamType.DocumentReference, false, ['users']),
           ),
         ),
         FFRoute(
@@ -227,6 +222,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/ManagerDashboards',
           requireAuth: true,
           builder: (context, params) => const ManagerDashboardsWidget(),
+        ),
+        FFRoute(
+          name: 'Parties',
+          path: '/parties',
+          builder: (context, params) => const PartiesWidget(),
+        ),
+        FFRoute(
+          name: 'viewFeedback',
+          path: '/viewFeedback',
+          builder: (context, params) => ViewFeedbackWidget(
+            feedBackDoc: params.getParam('feedBackDoc',
+                ParamType.DocumentReference, false, ['user_feedback']),
+          ),
+        ),
+        FFRoute(
+          name: 'listFeedback',
+          path: '/listFeedback',
+          builder: (context, params) => const ListFeedbackWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

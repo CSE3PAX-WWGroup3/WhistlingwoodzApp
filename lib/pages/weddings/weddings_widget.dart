@@ -80,6 +80,37 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
             children: [
               Column(
                 children: [
+                  Align(
+                    alignment: const Alignment(0.0, 0),
+                    child: FlutterFlowButtonTabBar(
+                      useToggleButtonStyle: true,
+                      labelStyle: FlutterFlowTheme.of(context).labelSmall,
+                      unselectedLabelStyle: const TextStyle(),
+                      labelColor: const Color(0xFFF8FBFC),
+                      unselectedLabelColor:
+                          FlutterFlowTheme.of(context).secondaryText,
+                      backgroundColor: Colors.black,
+                      unselectedBackgroundColor: Colors.black,
+                      borderColor: const Color(0xFF010000),
+                      unselectedBorderColor:
+                          FlutterFlowTheme.of(context).alternate,
+                      borderWidth: 2.0,
+                      borderRadius: 8.0,
+                      elevation: 0.0,
+                      buttonMargin:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      padding: const EdgeInsets.all(4.0),
+                      tabs: const [
+                        Tab(
+                          text: 'Wedding',
+                        ),
+                      ],
+                      controller: _model.tabBarController,
+                      onTap: (i) async {
+                        [() async {}][i]();
+                      },
+                    ),
+                  ),
                   Expanded(
                     child: TabBarView(
                       controller: _model.tabBarController,
@@ -121,6 +152,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBtnText,
+                                          fontSize: FFAppState().fontSize14,
                                         ),
                                   ),
                                   Align(
@@ -136,7 +168,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBtnText,
-                                              fontSize: 14.0,
+                                              fontSize: FFAppState().fontSize14,
                                             ),
                                       ),
                                     ),
@@ -163,7 +195,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBtnText,
-                                                    fontSize: 14.0,
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -221,9 +254,14 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               },
                                               width: 300.0,
                                               height: 50.0,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
+                                                  ),
                                               hintText: 'Please select...',
                                               icon: Icon(
                                                 Icons
@@ -280,7 +318,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBtnText,
-                                                    fontSize: 14.0,
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -316,20 +355,24 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                 functionPickWeddingFunctionRecordList =
                                                 snapshot.data!;
                                             return FlutterFlowDropDown<String>(
-                                              controller: _model
+                                              multiSelectController: _model
                                                       .functionPickValueController ??=
-                                                  FormFieldController<String>(
-                                                      null),
+                                                  FormFieldController<
+                                                      List<String>>(null),
                                               options:
                                                   functionPickWeddingFunctionRecordList
                                                       .map((e) => e.function)
                                                       .toList(),
-                                              onChanged: null,
                                               width: 300.0,
                                               height: 50.0,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
+                                                  ),
                                               hintText: 'Please select...',
                                               icon: Icon(
                                                 Icons
@@ -355,7 +398,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               isOverButton: true,
                                               isSearchable: false,
                                               isMultiSelect: true,
-                                              onChangedForMultiSelect: (val) =>
+                                              onMultiSelectChanged: (val) =>
                                                   setState(() => _model
                                                       .functionPickValue = val),
                                             );
@@ -391,6 +434,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBtnText,
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -459,7 +504,13 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                 height: 50.0,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: FFAppState()
+                                                              .fontSize14,
+                                                        ),
                                                 hintText: 'Please select...',
                                                 icon: Icon(
                                                   Icons
@@ -509,10 +560,18 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF0E0E0E),
+                                                      fontSize: FFAppState()
+                                                          .fontSize14,
                                                     ),
                                                 hintStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMedium,
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: FFAppState()
+                                                              .fontSize14,
+                                                        ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
@@ -565,9 +624,14 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBtnText,
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
+                                                  ),
                                               validator: _model
                                                   .venueOtherControllerValidator
                                                   .asValidator(context),
@@ -601,6 +665,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBtnText,
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -635,10 +701,17 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF0E0E0E),
+                                                      fontSize: FFAppState()
+                                                          .fontSize14,
                                                     ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium,
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      fontSize: FFAppState()
+                                                          .fontSize14,
+                                                    ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
@@ -686,7 +759,12 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     .primaryBtnText,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize:
+                                                    FFAppState().fontSize14,
+                                              ),
                                           validator: _model
                                               .numberGuestsControllerValidator
                                               .asValidator(context),
@@ -719,6 +797,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBtnText,
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -775,9 +855,14 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               },
                                               width: 300.0,
                                               height: 50.0,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    fontSize:
+                                                        FFAppState().fontSize14,
+                                                  ),
                                               hintText: 'Please select...',
                                               icon: Icon(
                                                 Icons
@@ -822,22 +907,22 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'WEDDINGS_PAGE_SUBMIT_BTN_ON_TAP');
+                                                  'WEDDINGS_PAGE_Submit_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Button_custom_action');
+                                                  'Submit_custom_action');
                                               _model.eventID =
                                                   await actions.nextDocID(
                                                 'Wedding',
                                               );
                                               logFirebaseEvent(
-                                                  'Button_custom_action');
+                                                  'Submit_custom_action');
                                               _model.functions =
                                                   actions.listToString(
                                                 _model.functionPickValue!
                                                     .toList(),
                                               );
                                               logFirebaseEvent(
-                                                  'Button_custom_action');
+                                                  'Submit_custom_action');
                                               _model.submissioResult =
                                                   actions.submitEvent(
                                                 _model.eventID!,
@@ -855,7 +940,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                 _model.budgetValue!,
                                               );
                                               logFirebaseEvent(
-                                                  'Button_backend_call');
+                                                  'Submit_backend_call');
 
                                               await currentUserReference!
                                                   .update({
@@ -870,7 +955,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                 ),
                                               });
                                               logFirebaseEvent(
-                                                  'Button_navigate_to');
+                                                  'Submit_navigate_to');
 
                                               context.pushNamed(
                                                 'EventSubmission',
@@ -942,6 +1027,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                   .override(
                                                     fontFamily: 'Readex Pro',
                                                     color: const Color(0xFFE6DDDD),
+                                                    fontSize:
+                                                        FFAppState().fontSize16,
                                                   ),
                                               elevation: 3.0,
                                               borderSide: const BorderSide(
@@ -985,6 +1072,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: Colors.white,
+                                                      fontSize: FFAppState()
+                                                          .fontSize16,
                                                     ),
                                             elevation: 3.0,
                                             borderSide: const BorderSide(
@@ -1011,56 +1100,25 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: const Alignment(0.0, 0),
-                    child: FlutterFlowButtonTabBar(
-                      useToggleButtonStyle: true,
-                      labelStyle: FlutterFlowTheme.of(context).labelSmall,
-                      unselectedLabelStyle: const TextStyle(),
-                      labelColor: const Color(0xFFF8FBFC),
-                      unselectedLabelColor:
-                          FlutterFlowTheme.of(context).secondaryText,
-                      backgroundColor: Colors.black,
-                      unselectedBackgroundColor: Colors.black,
-                      borderColor: const Color(0xFF010000),
-                      unselectedBorderColor:
-                          FlutterFlowTheme.of(context).alternate,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      elevation: 0.0,
-                      buttonMargin:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      padding: const EdgeInsets.all(4.0),
-                      tabs: const [
-                        Tab(
-                          text: 'Wedding',
-                        ),
-                      ],
-                      controller: _model.tabBarController,
-                      onTap: (i) async {
-                        [() async {}][i]();
-                      },
-                    ),
-                  ),
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -1.0),
+                alignment: const AlignmentDirectional(-1.0, -0.87),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
+                    borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                     borderRadius: 20.0,
                     borderWidth: 1.0,
                     buttonSize: 40.0,
-                    fillColor: Colors.white,
+                    fillColor: const Color(0xFF0E0E0E),
                     icon: Icon(
-                      Icons.chevron_left,
-                      color: FlutterFlowTheme.of(context).primaryText,
+                      Icons.home,
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      logFirebaseEvent('WEDDINGS_PAGE_chevron_left_ICN_ON_TAP');
+                      logFirebaseEvent('WEDDINGS_PAGE_home_ICN_ON_TAP');
                       logFirebaseEvent('IconButton_navigate_to');
 
                       context.pushNamed('LandingPage');

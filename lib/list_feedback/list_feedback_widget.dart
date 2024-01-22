@@ -5,27 +5,28 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'admin_model.dart';
-export 'admin_model.dart';
+import 'list_feedback_model.dart';
+export 'list_feedback_model.dart';
 
-class AdminWidget extends StatefulWidget {
-  const AdminWidget({super.key});
+class ListFeedbackWidget extends StatefulWidget {
+  const ListFeedbackWidget({super.key});
 
   @override
-  _AdminWidgetState createState() => _AdminWidgetState();
+  _ListFeedbackWidgetState createState() => _ListFeedbackWidgetState();
 }
 
-class _AdminWidgetState extends State<AdminWidget> {
-  late AdminModel _model;
+class _ListFeedbackWidgetState extends State<ListFeedbackWidget> {
+  late ListFeedbackModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AdminModel());
+    _model = createModel(context, () => ListFeedbackModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Admin'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'listFeedback'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -56,6 +57,37 @@ class _AdminWidgetState extends State<AdminWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF800306),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              logFirebaseEvent('LIST_FEEDBACK_PAGE_Back_ON_TAP');
+              logFirebaseEvent('Back_navigate_back');
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Feedback Recieved',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: FFAppState().fontSize32,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -70,7 +102,7 @@ class _AdminWidgetState extends State<AdminWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -86,33 +118,14 @@ class _AdminWidgetState extends State<AdminWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              logFirebaseEvent('ADMIN_PAGE_Home_ON_TAP');
+                              logFirebaseEvent(
+                                  'LIST_FEEDBACK_PAGE_Home_ON_TAP');
                               logFirebaseEvent('Home_navigate_to');
 
                               context.pushNamed('LandingPage');
                             },
                           ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.white,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: const Color(0xFF0E0E0E),
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              logFirebaseEvent('ADMIN_PAGE_Back_ON_TAP');
-                              logFirebaseEvent('Back_navigate_back');
-                              context.safePop();
-                            },
-                          ),
-                        ]
-                            .divide(const SizedBox(width: 20.0))
-                            .addToStart(const SizedBox(width: 10.0))
-                            .addToEnd(const SizedBox(width: 10.0)),
+                        ],
                       ),
                     ),
                     ClipRRect(
@@ -124,44 +137,26 @@ class _AdminWidgetState extends State<AdminWidget> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 0.0, 8.0),
-                              child: Text(
-                                'Registered  Users',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
-                              ),
-                            ),
+                    Text(
+                      'List of feedback received',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            color: Colors.white,
+                            fontSize: FFAppState().fontSize16,
                           ),
-                        ),
-                      ],
                     ),
                   ]
-                      .divide(const SizedBox(height: 20.0))
-                      .addToStart(const SizedBox(height: 20.0))
-                      .addToEnd(const SizedBox(height: 20.0)),
+                      .divide(const SizedBox(height: 5.0))
+                      .addToEnd(const SizedBox(height: 5.0)),
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                  child: StreamBuilder<List<UsersRecord>>(
-                    stream: queryUsersRecord(
-                      queryBuilder: (usersRecord) =>
-                          usersRecord.orderBy('email'),
+                  child: StreamBuilder<List<UserFeedbackRecord>>(
+                    stream: queryUserFeedbackRecord(
+                      queryBuilder: (userFeedbackRecord) => userFeedbackRecord
+                          .orderBy('timestamp', descending: true),
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -178,17 +173,17 @@ class _AdminWidgetState extends State<AdminWidget> {
                           ),
                         );
                       }
-                      List<UsersRecord> listViewUsersRecordList =
+                      List<UserFeedbackRecord> listViewUserFeedbackRecordList =
                           snapshot.data!;
                       return ListView.separated(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: listViewUsersRecordList.length,
+                        itemCount: listViewUserFeedbackRecordList.length,
                         separatorBuilder: (_, __) => const SizedBox(height: 5.0),
                         itemBuilder: (context, listViewIndex) {
-                          final listViewUsersRecord =
-                              listViewUsersRecordList[listViewIndex];
+                          final listViewUserFeedbackRecord =
+                              listViewUserFeedbackRecordList[listViewIndex];
                           return InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -196,14 +191,14 @@ class _AdminWidgetState extends State<AdminWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               logFirebaseEvent(
-                                  'ADMIN_PAGE_ListTile_k5fglxm5_ON_TAP');
+                                  'LIST_FEEDBACK_ListTile_kst2nj0e_ON_TAP');
                               logFirebaseEvent('ListTile_navigate_to');
 
                               context.pushNamed(
-                                'updateUserProfile',
+                                'viewFeedback',
                                 queryParameters: {
-                                  'userInformation': serializeParam(
-                                    listViewUsersRecord.reference,
+                                  'feedBackDoc': serializeParam(
+                                    listViewUserFeedbackRecord.reference,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -211,8 +206,17 @@ class _AdminWidgetState extends State<AdminWidget> {
                             },
                             child: ListTile(
                               title: Text(
-                                listViewUsersRecord.email,
-                                style: FlutterFlowTheme.of(context).titleLarge,
+                                listViewUserFeedbackRecord.feedback,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      fontSize: 16.0,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                listViewUserFeedbackRecord.message,
+                                style: FlutterFlowTheme.of(context).labelMedium,
                               ),
                               trailing: Icon(
                                 Icons.arrow_forward_ios,
@@ -231,10 +235,7 @@ class _AdminWidgetState extends State<AdminWidget> {
                   ),
                 ),
               ),
-            ]
-                .divide(const SizedBox(height: 10.0))
-                .addToStart(const SizedBox(height: 10.0))
-                .addToEnd(const SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)).addToEnd(const SizedBox(height: 10.0)),
           ),
         ),
       ),

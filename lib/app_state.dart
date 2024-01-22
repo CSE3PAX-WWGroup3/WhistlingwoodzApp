@@ -197,6 +197,112 @@ class FFAppState extends ChangeNotifier {
   set displayName(String value) {
     _displayName = value;
   }
+
+  List<String> _yBarNumber = ['1-5', '6-10', '10+'];
+  List<String> get yBarNumber => _yBarNumber;
+  set yBarNumber(List<String> value) {
+    _yBarNumber = value;
+  }
+
+  void addToYBarNumber(String value) {
+    _yBarNumber.add(value);
+  }
+
+  void removeFromYBarNumber(String value) {
+    _yBarNumber.remove(value);
+  }
+
+  void removeAtIndexFromYBarNumber(int index) {
+    _yBarNumber.removeAt(index);
+  }
+
+  void updateYBarNumberAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _yBarNumber[index] = updateFn(_yBarNumber[index]);
+  }
+
+  void insertAtIndexInYBarNumber(int index, String value) {
+    _yBarNumber.insert(index, value);
+  }
+
+  List<String> _xBarTime = ['1-5 Days', '6-10 Days', '10+'];
+  List<String> get xBarTime => _xBarTime;
+  set xBarTime(List<String> value) {
+    _xBarTime = value;
+  }
+
+  void addToXBarTime(String value) {
+    _xBarTime.add(value);
+  }
+
+  void removeFromXBarTime(String value) {
+    _xBarTime.remove(value);
+  }
+
+  void removeAtIndexFromXBarTime(int index) {
+    _xBarTime.removeAt(index);
+  }
+
+  void updateXBarTimeAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _xBarTime[index] = updateFn(_xBarTime[index]);
+  }
+
+  void insertAtIndexInXBarTime(int index, String value) {
+    _xBarTime.insert(index, value);
+  }
+
+  double _screenWidth = 0.0;
+  double get screenWidth => _screenWidth;
+  set screenWidth(double value) {
+    _screenWidth = value;
+  }
+
+  double _fontSize12 = 0.0;
+  double get fontSize12 => _fontSize12;
+  set fontSize12(double value) {
+    _fontSize12 = value;
+  }
+
+  double _fontSize14 = 0.0;
+  double get fontSize14 => _fontSize14;
+  set fontSize14(double value) {
+    _fontSize14 = value;
+  }
+
+  double _fontSize16 = 0.0;
+  double get fontSize16 => _fontSize16;
+  set fontSize16(double value) {
+    _fontSize16 = value;
+  }
+
+  double _fontSize18 = 0.0;
+  double get fontSize18 => _fontSize18;
+  set fontSize18(double value) {
+    _fontSize18 = value;
+  }
+
+  double _fontSize20 = 0.0;
+  double get fontSize20 => _fontSize20;
+  set fontSize20(double value) {
+    _fontSize20 = value;
+  }
+
+  double _fontSize22 = 0.0;
+  double get fontSize22 => _fontSize22;
+  set fontSize22(double value) {
+    _fontSize22 = value;
+  }
+
+  double _fontSize32 = 0.0;
+  double get fontSize32 => _fontSize32;
+  set fontSize32(double value) {
+    _fontSize32 = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -5,3 +5,5 @@ export 'submit_event.dart' show submitEvent;
 export 'get_client_emails.dart' show getClientEmails;
 export 'send_message.dart' show sendMessage;
 export 'get_admin_emails.dart' show getAdminEmails;
+export 'raw_event_c_s_v.dart' show rawEventCSV;
+export 'new_event_p_d_f.dart' show newEventPDF;

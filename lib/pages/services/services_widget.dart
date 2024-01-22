@@ -76,32 +76,7 @@ class _ServicesWidgetState extends State<ServicesWidget>
                         ListView(
                           padding: EdgeInsets.zero,
                           scrollDirection: Axis.vertical,
-                          children: [
-                            Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
-                              child: FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: Colors.white,
-                                icon: Icon(
-                                  Icons.chevron_left,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'SERVICES_PAGE_chevron_left_ICN_ON_TAP');
-                                  logFirebaseEvent('IconButton_navigate_to');
-
-                                  context.pushNamed('LandingPage');
-                                },
-                              ),
-                            ),
-                          ],
+                          children: const [],
                         ),
                       ],
                     ),
@@ -139,34 +114,36 @@ class _ServicesWidgetState extends State<ServicesWidget>
                   ),
                 ],
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 175.0, 0.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 500.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/1648e60fad5f3a508963e9496ceb8e77.jpg',
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 175.0, 0.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 500.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/1648e60fad5f3a508963e9496ceb8e77.jpg',
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Align(
                 alignment: const AlignmentDirectional(0.0, -0.97),
@@ -204,6 +181,7 @@ class _ServicesWidgetState extends State<ServicesWidget>
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
                                 color: Colors.white,
+                                fontSize: FFAppState().fontSize16,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(
@@ -212,6 +190,27 @@ class _ServicesWidgetState extends State<ServicesWidget>
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-1.0, -1.0),
+                child: FlutterFlowIconButton(
+                  borderColor: FlutterFlowTheme.of(context).primaryBtnText,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  fillColor: const Color(0xFF0E0E0E),
+                  icon: Icon(
+                    Icons.home,
+                    color: FlutterFlowTheme.of(context).primaryBtnText,
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    logFirebaseEvent('SERVICES_PAGE_home_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
+
+                    context.pushNamed('LandingPage');
+                  },
                 ),
               ),
             ],

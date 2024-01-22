@@ -135,7 +135,7 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: FFAppState().fontSize16,
                           ),
                     ),
                   ]
@@ -213,16 +213,26 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                           child: ListTile(
                             title: Text(
                               listViewEventsRecord.reference.id,
-                              style: FlutterFlowTheme.of(context).titleLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    fontSize: FFAppState().fontSize22,
+                                  ),
                             ),
                             subtitle: Text(
                               listViewEventsRecord.requestTime,
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
                             ),
                             trailing: Icon(
                               Icons.arrow_forward_ios,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 20.0,
+                              size: FFAppState().fontSize20,
                             ),
                             tileColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,

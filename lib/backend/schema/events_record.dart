@@ -30,11 +30,6 @@ class EventsRecord extends FirestoreRecord {
   String get eventType => _eventType ?? '';
   bool hasEventType() => _eventType != null;
 
-  // "functions" field.
-  List<String>? _functions;
-  List<String> get functions => _functions ?? const [];
-  bool hasFunctions() => _functions != null;
-
   // "numberGuests" field.
   String? _numberGuests;
   String get numberGuests => _numberGuests ?? '';
@@ -55,15 +50,20 @@ class EventsRecord extends FirestoreRecord {
   String get requestTime => _requestTime ?? '';
   bool hasRequestTime() => _requestTime != null;
 
+  // "functions" field.
+  String? _functions;
+  String get functions => _functions ?? '';
+  bool hasFunctions() => _functions != null;
+
   void _initializeFields() {
     _budget = snapshotData['budget'] as String?;
     _email = snapshotData['email'] as String?;
     _eventType = snapshotData['eventType'] as String?;
-    _functions = getDataList(snapshotData['functions']);
     _numberGuests = snapshotData['numberGuests'] as String?;
     _theme = snapshotData['theme'] as String?;
     _venue = snapshotData['venue'] as String?;
     _requestTime = snapshotData['requestTime'] as String?;
+    _functions = snapshotData['functions'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -107,6 +107,7 @@ Map<String, dynamic> createEventsRecordData({
   String? theme,
   String? venue,
   String? requestTime,
+  String? functions,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -117,6 +118,7 @@ Map<String, dynamic> createEventsRecordData({
       'theme': theme,
       'venue': venue,
       'requestTime': requestTime,
+      'functions': functions,
     }.withoutNulls,
   );
 
@@ -128,15 +130,14 @@ class EventsRecordDocumentEquality implements Equality<EventsRecord> {
 
   @override
   bool equals(EventsRecord? e1, EventsRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.budget == e2?.budget &&
         e1?.email == e2?.email &&
         e1?.eventType == e2?.eventType &&
-        listEquality.equals(e1?.functions, e2?.functions) &&
         e1?.numberGuests == e2?.numberGuests &&
         e1?.theme == e2?.theme &&
         e1?.venue == e2?.venue &&
-        e1?.requestTime == e2?.requestTime;
+        e1?.requestTime == e2?.requestTime &&
+        e1?.functions == e2?.functions;
   }
 
   @override
@@ -144,11 +145,11 @@ class EventsRecordDocumentEquality implements Equality<EventsRecord> {
         e?.budget,
         e?.email,
         e?.eventType,
-        e?.functions,
         e?.numberGuests,
         e?.theme,
         e?.venue,
-        e?.requestTime
+        e?.requestTime,
+        e?.functions
       ]);
 
   @override

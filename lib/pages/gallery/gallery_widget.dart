@@ -126,44 +126,41 @@ class _GalleryWidgetState extends State<GalleryWidget>
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     children: [
-                      Align(
-                        alignment: const AlignmentDirectional(1.0, -1.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            logFirebaseEvent(
-                                'GALLERY_PAGE_Image_uz9i67de_ON_TAP');
-                            logFirebaseEvent('Image_expand_image');
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                child: FlutterFlowExpandedImageView(
-                                  image: Image.asset(
-                                    'assets/images/MicrosoftTeams-image_(9).jpg',
-                                    fit: BoxFit.contain,
-                                  ),
-                                  allowRotation: false,
-                                  tag: 'imageTag1',
-                                  useHeroAnimation: true,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'GALLERY_PAGE_Image_uz9i67de_ON_TAP');
+                          logFirebaseEvent('Image_expand_image');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/MicrosoftTeams-image_(9).jpg',
+                                  fit: BoxFit.contain,
                                 ),
+                                allowRotation: false,
+                                tag: 'imageTag1',
+                                useHeroAnimation: true,
                               ),
-                            );
-                          },
-                          child: Hero(
-                            tag: 'imageTag1',
-                            transitionOnUserGestures: true,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/MicrosoftTeams-image_(9).jpg',
-                                width: 300.0,
-                                height: 200.0,
-                                fit: BoxFit.cover,
-                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag1',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(9).jpg',
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -487,18 +484,18 @@ class _GalleryWidgetState extends State<GalleryWidget>
               Align(
                 alignment: const AlignmentDirectional(-1.0, -1.0),
                 child: FlutterFlowIconButton(
-                  borderColor: FlutterFlowTheme.of(context).primary,
+                  borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                   borderRadius: 20.0,
                   borderWidth: 1.0,
                   buttonSize: 40.0,
-                  fillColor: Colors.white,
+                  fillColor: const Color(0xFF0E0E0E),
                   icon: Icon(
-                    Icons.chevron_left,
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    Icons.home,
+                    color: FlutterFlowTheme.of(context).primaryBtnText,
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    logFirebaseEvent('GALLERY_PAGE_chevron_left_ICN_ON_TAP');
+                    logFirebaseEvent('GALLERY_PAGE_home_ICN_ON_TAP');
                     logFirebaseEvent('IconButton_navigate_to');
 
                     context.pushNamed('LandingPage');
@@ -511,7 +508,7 @@ class _GalleryWidgetState extends State<GalleryWidget>
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 324.0,
+                    width: MediaQuery.sizeOf(context).width * 0.75,
                     height: 200.0,
                     fit: BoxFit.contain,
                   ),
@@ -542,12 +539,13 @@ class _GalleryWidgetState extends State<GalleryWidget>
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
                                 color: Colors.white,
+                                fontSize: FFAppState().fontSize16,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(
                         color: Colors.transparent,
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
                 ),

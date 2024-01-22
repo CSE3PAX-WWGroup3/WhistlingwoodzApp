@@ -92,7 +92,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 243.0,
                     height: 165.0,
                     fit: BoxFit.cover,
                   ),
@@ -105,74 +104,76 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      'Create your account here.',
+                      style: FlutterFlowTheme.of(context).titleMedium,
+                    ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
-                      child: Text(
-                        'Create your account here.',
-                        style: FlutterFlowTheme.of(context).titleMedium,
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 10.0, 24.0, 0.0),
-                        child: TextFormField(
-                          controller: _model.emailAddressController,
-                          focusNode: _model.emailAddressFocusNode,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Email Address',
-                            labelStyle: FlutterFlowTheme.of(context).labelSmall,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      child: TextFormField(
+                        controller: _model.emailAddressController,
+                        focusNode: _model.emailAddressFocusNode,
+                        autofocus: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Email Address',
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 2.0,
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor: const Color(0xFF010000),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                              ),
-                          validator: _model.emailAddressControllerValidator
-                              .asValidator(context),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFF010000),
                         ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              fontSize: FFAppState().fontSize14,
+                            ),
+                        validator: _model.emailAddressControllerValidator
+                            .asValidator(context),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 10.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       child: TextFormField(
                         controller: _model.passwordController,
                         focusNode: _model.passwordFocusNode,
@@ -181,8 +182,18 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         obscureText: !_model.passwordVisibility,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).alternate,
@@ -232,6 +243,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               fontFamily: 'Readex Pro',
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
+                              fontSize: FFAppState().fontSize14,
                             ),
                         maxLength: 14,
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -250,8 +262,18 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         obscureText: !_model.passwordConfirmVisibility,
                         decoration: InputDecoration(
                           labelText: 'Confirm Password',
-                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).alternate,
@@ -301,6 +323,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               fontFamily: 'Readex Pro',
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
+                              fontSize: FFAppState().fontSize14,
                             ),
                         maxLength: 14,
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -355,13 +378,14 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
                     ),
@@ -419,14 +443,16 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 .override(
                                   fontFamily: 'Plus Jakarta Sans',
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  fontSize: 16.0,
+                                  fontSize: FFAppState().fontSize16,
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),
+                  ]
+                      .divide(const SizedBox(height: 10.0))
+                      .around(const SizedBox(height: 10.0)),
                 ),
               ),
             ],

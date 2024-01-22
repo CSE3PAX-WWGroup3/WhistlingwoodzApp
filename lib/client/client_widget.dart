@@ -72,24 +72,25 @@ class _ClientWidgetState extends State<ClientWidget> {
                   children: [
                     Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primary,
+                          borderColor:
+                              FlutterFlowTheme.of(context).primaryBtnText,
                           borderRadius: 20.0,
                           borderWidth: 1.0,
                           buttonSize: 40.0,
-                          fillColor: Colors.white,
-                          icon: Icon(
-                            Icons.chevron_left,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                          fillColor: const Color(0xFF0E0E0E),
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
                             size: 24.0,
                           ),
                           onPressed: () async {
                             logFirebaseEvent(
-                                'CLIENT_PAGE_chevron_left_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_to');
-
-                            context.pushNamed('LandingPage');
+                                'CLIENT_PAGE_arrow_back_ICN_ON_TAP');
+                            logFirebaseEvent('IconButton_navigate_back');
+                            context.pop();
                           },
                         ),
                       ],
@@ -108,6 +109,7 @@ class _ClientWidgetState extends State<ClientWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Colors.white,
+                            fontSize: FFAppState().fontSize14,
                           ),
                     ),
                     Text(
@@ -115,6 +117,7 @@ class _ClientWidgetState extends State<ClientWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Colors.white,
+                            fontSize: FFAppState().fontSize14,
                           ),
                     ),
                   ]
@@ -194,11 +197,21 @@ class _ClientWidgetState extends State<ClientWidget> {
                           child: ListTile(
                             title: Text(
                               listViewEventsRecord.reference.id,
-                              style: FlutterFlowTheme.of(context).titleLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    fontSize: FFAppState().fontSize22,
+                                  ),
                             ),
                             subtitle: Text(
                               listViewEventsRecord.requestTime,
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
                             ),
                             trailing: Icon(
                               Icons.arrow_forward_ios,

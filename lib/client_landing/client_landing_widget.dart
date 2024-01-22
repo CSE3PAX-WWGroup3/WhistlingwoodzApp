@@ -63,10 +63,11 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
+            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
+            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -83,7 +84,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: FFAppState().fontSize22,
                 ),
           ),
           actions: const [],
@@ -118,7 +119,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Colors.white,
-                            fontSize: 18.0,
+                            fontSize: FFAppState().fontSize18,
                           ),
                     ),
                   ],
@@ -141,6 +142,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
                         color: Colors.white,
+                        fontSize: FFAppState().fontSize16,
                       ),
                   elevation: 3.0,
                   borderSide: const BorderSide(
@@ -167,6 +169,42 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
                         color: Colors.white,
+                        fontSize: FFAppState().fontSize16,
+                      ),
+                  elevation: 3.0,
+                  borderSide: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  logFirebaseEvent('CLIENT_LANDING_PAGE_userProfile_ON_TAP');
+                  logFirebaseEvent('userProfile_navigate_to');
+
+                  context.pushNamed(
+                    'updateUserProfile',
+                    queryParameters: {
+                      'userInformation': serializeParam(
+                        currentUserReference,
+                        ParamType.DocumentReference,
+                      ),
+                    }.withoutNulls,
+                  );
+                },
+                text: 'Update User Profile',
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: const Color(0xFF0E0E0E),
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Readex Pro',
+                        color: Colors.white,
+                        fontSize: FFAppState().fontSize16,
                       ),
                   elevation: 3.0,
                   borderSide: const BorderSide(
@@ -208,6 +246,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
                         color: Colors.white,
+                        fontSize: FFAppState().fontSize16,
                       ),
                   elevation: 3.0,
                   borderSide: const BorderSide(

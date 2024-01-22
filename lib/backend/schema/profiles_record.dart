@@ -60,15 +60,15 @@ class ProfilesRecord extends FirestoreRecord {
   String get userName => _userName ?? '';
   bool hasUserName() => _userName != null;
 
-  // "gender" field.
-  List<String>? _gender;
-  List<String> get gender => _gender ?? const [];
-  bool hasGender() => _gender != null;
-
   // "dob" field.
   DateTime? _dob;
   DateTime? get dob => _dob;
   bool hasDob() => _dob != null;
+
+  // "gender" field.
+  String? _gender;
+  String get gender => _gender ?? '';
+  bool hasGender() => _gender != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
@@ -82,8 +82,8 @@ class ProfilesRecord extends FirestoreRecord {
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _bio = snapshotData['bio'] as String?;
     _userName = snapshotData['user_name'] as String?;
-    _gender = getDataList(snapshotData['gender']);
     _dob = snapshotData['dob'] as DateTime?;
+    _gender = snapshotData['gender'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -136,6 +136,7 @@ Map<String, dynamic> createProfilesRecordData({
   String? bio,
   String? userName,
   DateTime? dob,
+  String? gender,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -149,6 +150,7 @@ Map<String, dynamic> createProfilesRecordData({
       'bio': bio,
       'user_name': userName,
       'dob': dob,
+      'gender': gender,
     }.withoutNulls,
   );
 
@@ -160,7 +162,6 @@ class ProfilesRecordDocumentEquality implements Equality<ProfilesRecord> {
 
   @override
   bool equals(ProfilesRecord? e1, ProfilesRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
@@ -170,8 +171,8 @@ class ProfilesRecordDocumentEquality implements Equality<ProfilesRecord> {
         e1?.editedTime == e2?.editedTime &&
         e1?.bio == e2?.bio &&
         e1?.userName == e2?.userName &&
-        listEquality.equals(e1?.gender, e2?.gender) &&
-        e1?.dob == e2?.dob;
+        e1?.dob == e2?.dob &&
+        e1?.gender == e2?.gender;
   }
 
   @override
@@ -185,8 +186,8 @@ class ProfilesRecordDocumentEquality implements Equality<ProfilesRecord> {
         e?.editedTime,
         e?.bio,
         e?.userName,
-        e?.gender,
-        e?.dob
+        e?.dob,
+        e?.gender
       ]);
 
   @override

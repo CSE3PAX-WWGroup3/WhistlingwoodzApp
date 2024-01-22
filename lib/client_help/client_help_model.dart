@@ -6,12 +6,12 @@ class ClientHelpModel extends FlutterFlowModel<ClientHelpWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getAdminEmails] action in Button widget.
+  String? audience;
   // State field(s) for Message widget.
   FocusNode? messageFocusNode;
   TextEditingController? messageController;
   String? Function(BuildContext, String?)? messageControllerValidator;
-  // Stores action output result for [Custom Action - getAdminEmails] action in Button widget.
-  String? audience;
 
   /// Initialization and disposal methods.
 

@@ -63,10 +63,11 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
+            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
+            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -83,7 +84,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: 32.0,
+                  fontSize: FFAppState().fontSize32,
                 ),
           ),
           actions: const [],
@@ -120,8 +121,8 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'MANAGER_LANDING_MANAGER_DASHBOARD_BTN_ON');
-                          logFirebaseEvent('Button_navigate_to');
+                              'MANAGER_LANDING_ManagerDashboard_ON_TAP');
+                          logFirebaseEvent('ManagerDashboard_navigate_to');
 
                           context.pushNamed('ManagerDashboards');
                         },
@@ -137,6 +138,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -149,8 +151,8 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'MANAGER_LANDING_SUBMIT_NOTIFICATION_BTN_');
-                          logFirebaseEvent('Button_navigate_to');
+                              'MANAGER_LANDING_SubmitNotification_ON_TA');
+                          logFirebaseEvent('SubmitNotification_navigate_to');
 
                           context.pushNamed('ClientMessage');
                         },
@@ -166,6 +168,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -178,8 +181,8 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'MANAGER_LANDING_MANAGER_CLIENT_REQUEST_B');
-                          logFirebaseEvent('Button_navigate_to');
+                              'MANAGER_LANDING_ClientRequest_ON_TAP');
+                          logFirebaseEvent('ClientRequest_navigate_to');
 
                           context.pushNamed('Manager');
                         },
@@ -195,6 +198,37 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'MANAGER_LANDING_PAGE_ListFeedbac_ON_TAP');
+                          logFirebaseEvent('ListFeedbac_navigate_to');
+
+                          context.pushNamed('listFeedback');
+                        },
+                        text: 'List Feedback Received',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF0E0E0E),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -239,6 +273,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
+                                    fontSize: FFAppState().fontSize16,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -250,8 +285,8 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       ),
                     ]
                         .divide(const SizedBox(height: 10.0))
-                        .addToStart(const SizedBox(height: 30.0))
-                        .addToEnd(const SizedBox(height: 30.0)),
+                        .addToStart(const SizedBox(height: 10.0))
+                        .addToEnd(const SizedBox(height: 10.0)),
                   ),
                 ),
               ),
@@ -260,7 +295,10 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Readex Pro',
                       color: Colors.white,
-                      fontSize: 22.0,
+                      fontSize: valueOrDefault<double>(
+                        FFAppState().fontSize16,
+                        16.0,
+                      ),
                     ),
               ),
               Expanded(
@@ -310,6 +348,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
+                                        fontSize: FFAppState().fontSize14,
                                       ),
                                 ),
                               ),
@@ -322,6 +361,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
+                                        fontSize: FFAppState().fontSize14,
                                       ),
                                 ),
                               ),
@@ -334,6 +374,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
+                                        fontSize: FFAppState().fontSize14,
                                       ),
                                 ),
                               ),

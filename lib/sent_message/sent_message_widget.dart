@@ -65,30 +65,33 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
-            icon: const Icon(
-              Icons.home,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              logFirebaseEvent('SENT_MESSAGE_PAGE_home_ICN_ON_TAP');
-              logFirebaseEvent('IconButton_navigate_to');
+          leading: Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: FlutterFlowIconButton(
+              borderColor: FlutterFlowTheme.of(context).primaryBtnText,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              fillColor: const Color(0xFF0E0E0E),
+              icon: const Icon(
+                Icons.home,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                logFirebaseEvent('SENT_MESSAGE_PAGE_home_ICN_ON_TAP');
+                logFirebaseEvent('IconButton_navigate_to');
 
-              context.pushNamed('LandingPage');
-            },
+                context.pushNamed('LandingPage');
+              },
+            ),
           ),
           title: Text(
             'Message Sent',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: FFAppState().fontSize22,
                 ),
           ),
           actions: const [],
@@ -125,7 +128,7 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
-                              fontSize: 16.0,
+                              fontSize: FFAppState().fontSize16,
                             ),
                       ),
                     ),
@@ -139,7 +142,7 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
-                              fontSize: 18.0,
+                              fontSize: FFAppState().fontSize18,
                             ),
                       ),
                     ),
@@ -158,7 +161,7 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
-                              fontSize: 16.0,
+                              fontSize: FFAppState().fontSize16,
                             ),
                       ),
                     ),
@@ -172,6 +175,7 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
+                              fontSize: FFAppState().fontSize14,
                             ),
                       ),
                     ),

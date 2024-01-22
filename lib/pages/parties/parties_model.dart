@@ -44,7 +44,7 @@ class PartiesModel extends FlutterFlowModel<PartiesWidget> {
   // Stores action output result for [Custom Action - nextDocID] action in Button widget.
   String? eventID;
   // Stores action output result for [Custom Action - submitEvent] action in Button widget.
-  String? submissionResult;
+  String? submissioResult;
 
   /// Initialization and disposal methods.
 

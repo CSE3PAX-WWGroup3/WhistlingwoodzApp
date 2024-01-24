@@ -130,14 +130,13 @@ class _ManagerDashboardsWidgetState extends State<ManagerDashboardsWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                         'assets/images/MicrosoftTeams-image_(11).png',
-                        width: 300.0,
-                        height: 200.0,
+                        width: 150.0,
                         fit: BoxFit.cover,
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(19.0, 0.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(19.0, 20.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [

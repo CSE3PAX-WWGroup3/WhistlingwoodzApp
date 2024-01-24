@@ -134,18 +134,13 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/MicrosoftTeams-image_(11).png',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/MicrosoftTeams-image_(11).png',
+                                          width: 150.0,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ],
@@ -310,6 +305,8 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                             focusNode:
                                                 _model.themeOtherFocusNode,
                                             autofocus: true,
+                                            textInputAction:
+                                                TextInputAction.done,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText: 'Label here...',
@@ -503,6 +500,8 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                             focusNode:
                                                 _model.functionOtherFocusNode,
                                             autofocus: true,
+                                            textInputAction:
+                                                TextInputAction.done,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText: 'Label here...',
@@ -713,6 +712,8 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                               focusNode:
                                                   _model.venueOtherFocusNode,
                                               autofocus: true,
+                                              textInputAction:
+                                                  TextInputAction.done,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: 'Other',
@@ -854,6 +855,7 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                                       .text;
                                             });
                                           },
+                                          textInputAction: TextInputAction.done,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Number Of Guests',
@@ -1078,6 +1080,11 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                               );
                                               logFirebaseEvent(
                                                   'Button_custom_action');
+                                              _model.managerEmail =
+                                                  await actions
+                                                      .getManagerEmails();
+                                              logFirebaseEvent(
+                                                  'Button_custom_action');
                                               _model.submissioResult =
                                                   actions.submitEvent(
                                                 _model.eventID!,
@@ -1103,6 +1110,8 @@ class _PartiesWidgetState extends State<PartiesWidget>
                                                 _model.numberGuestsController
                                                     .text,
                                                 _model.budgetValue!,
+                                                currentUserUid,
+                                                _model.managerEmail!,
                                               );
                                               logFirebaseEvent(
                                                   'Button_backend_call');
@@ -1280,7 +1289,7 @@ class _PartiesWidgetState extends State<PartiesWidget>
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -0.87),
+                alignment: const AlignmentDirectional(-0.95, -0.9),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(

@@ -17,6 +17,8 @@ String submitEvent(
   String venue,
   String numberGuests,
   String budget,
+  String uid,
+  String managerEmail,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
 
@@ -25,12 +27,12 @@ String submitEvent(
   // String collection = eventType.toLowerCase();
   String collection = 'events';
   // ww manager email.
-  String managerEmail = 'wwmanager2023@gmail.com';
+  // String managerEmail = 'wwmanager2023@gmail.com';
 
   CollectionReference events =
       FirebaseFirestore.instance.collection(collection);
   String now = DateTime.now().toString().substring(0, 19);
-  List<String> notes = [];
+  // List<String> notes = [];
 
   events.doc(eventID).set({
     'email': email,
@@ -41,7 +43,7 @@ String submitEvent(
     'venue': venue,
     'numberGuests': numberGuests,
     'budget': budget,
-    'notes': notes
+    'uid': uid,
   });
 
   result = "$eventID loaded into database";
@@ -76,7 +78,7 @@ String submitEvent(
 
   mail.doc(eventID).set({
     'to': email,
-    'cc': managerEmail,
+    'bcc': managerEmail,
     'message': {
       'subject': subject,
       'html': html,

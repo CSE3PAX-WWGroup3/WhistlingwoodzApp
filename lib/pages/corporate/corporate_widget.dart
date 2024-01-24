@@ -139,20 +139,14 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.asset(
-                                                        'assets/images/MicrosoftTeams-image_(11).png',
-                                                        width: 300.0,
-                                                        height: 200.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/MicrosoftTeams-image_(11).png',
+                                                      width: 150.0,
+                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
                                                 ],
@@ -669,6 +663,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           focusNode: _model
                                                               .venueOtherFocusNode,
                                                           autofocus: true,
+                                                          textInputAction:
+                                                              TextInputAction
+                                                                  .done,
                                                           obscureText: false,
                                                           decoration:
                                                               InputDecoration(
@@ -836,6 +833,8 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                   .text;
                                                         });
                                                       },
+                                                      textInputAction:
+                                                          TextInputAction.done,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
@@ -1124,6 +1123,11 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                           );
                                                           logFirebaseEvent(
                                                               'Button_custom_action');
+                                                          _model.managerEmail =
+                                                              await actions
+                                                                  .getManagerEmails();
+                                                          logFirebaseEvent(
+                                                              'Button_custom_action');
                                                           _model.submissionResult =
                                                               actions
                                                                   .submitEvent(
@@ -1145,6 +1149,9 @@ class _CorporateWidgetState extends State<CorporateWidget>
                                                                 .numberGuestsController
                                                                 .text,
                                                             _model.budgetValue!,
+                                                            currentUserUid,
+                                                            _model
+                                                                .managerEmail!,
                                                           );
                                                           logFirebaseEvent(
                                                               'Button_backend_call');
@@ -1377,7 +1384,7 @@ class _CorporateWidgetState extends State<CorporateWidget>
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.98, -0.82),
+                alignment: const AlignmentDirectional(-0.95, -0.85),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(

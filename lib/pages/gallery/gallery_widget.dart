@@ -482,7 +482,7 @@ class _GalleryWidgetState extends State<GalleryWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -1.0),
+                alignment: const AlignmentDirectional(-0.95, -0.9),
                 child: FlutterFlowIconButton(
                   borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                   borderRadius: 20.0,
@@ -503,13 +503,12 @@ class _GalleryWidgetState extends State<GalleryWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.1, -1.11),
+                alignment: const AlignmentDirectional(0.0, -0.9),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: MediaQuery.sizeOf(context).width * 0.75,
-                    height: 200.0,
+                    width: 150.0,
                     fit: BoxFit.contain,
                   ),
                 ),

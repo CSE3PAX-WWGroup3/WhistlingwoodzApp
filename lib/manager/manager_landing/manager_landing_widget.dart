@@ -105,17 +105,13 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/MicrosoftTeams-image_(11).png',
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
-                            alignment: const Alignment(0.0, 0.0),
-                          ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/MicrosoftTeams-image_(11).png',
+                          width: 150.0,
+                          fit: BoxFit.cover,
+                          alignment: const Alignment(0.0, 0.0),
                         ),
                       ),
                       FFButtonWidget(
@@ -285,7 +281,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
                       ),
                     ]
                         .divide(const SizedBox(height: 10.0))
-                        .addToStart(const SizedBox(height: 10.0))
+                        .addToStart(const SizedBox(height: 20.0))
                         .addToEnd(const SizedBox(height: 10.0)),
                   ),
                 ),

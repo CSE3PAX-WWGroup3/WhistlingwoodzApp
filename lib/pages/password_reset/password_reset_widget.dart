@@ -81,13 +81,12 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.1, -0.78),
+                alignment: const AlignmentDirectional(0.0, -0.85),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 243.0,
-                    height: 165.0,
+                    width: 150.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -115,6 +114,7 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                           controller: _model.emailAddressController,
                           focusNode: _model.emailAddressFocusNode,
                           autofocus: true,
+                          textInputAction: TextInputAction.done,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Email Address',
@@ -222,31 +222,26 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                   ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(-1.0, -1.0),
-                    child: FlutterFlowIconButton(
-                      borderColor: FlutterFlowTheme.of(context).primaryBtnText,
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 40.0,
-                      fillColor: const Color(0xFF0E0E0E),
-                      icon: Icon(
-                        Icons.home,
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
-                        size: 24.0,
-                      ),
-                      onPressed: () async {
-                        logFirebaseEvent('PASSWORD_RESET_PAGE_home_ICN_ON_TAP');
-                        logFirebaseEvent('IconButton_navigate_to');
-
-                        context.pushNamed('LandingPage');
-                      },
-                    ),
+              Align(
+                alignment: const AlignmentDirectional(-0.95, -0.85),
+                child: FlutterFlowIconButton(
+                  borderColor: FlutterFlowTheme.of(context).primaryBtnText,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  fillColor: const Color(0xFF0E0E0E),
+                  icon: Icon(
+                    Icons.home,
+                    color: FlutterFlowTheme.of(context).primaryBtnText,
+                    size: 24.0,
                   ),
-                ],
+                  onPressed: () async {
+                    logFirebaseEvent('PASSWORD_RESET_PAGE_home_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
+
+                    context.pushNamed('LandingPage');
+                  },
+                ),
               ),
             ],
           ),

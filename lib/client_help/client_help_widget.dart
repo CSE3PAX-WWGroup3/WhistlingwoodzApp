@@ -105,8 +105,7 @@ class _ClientHelpWidgetState extends State<ClientHelpWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
                       'assets/images/MicrosoftTeams-image_(11).png',
-                      width: 300.0,
-                      height: 200.0,
+                      width: 150.0,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -196,6 +195,7 @@ class _ClientHelpWidgetState extends State<ClientHelpWidget> {
                           controller: _model.messageController,
                           focusNode: _model.messageFocusNode,
                           autofocus: true,
+                          textInputAction: TextInputAction.done,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Input request here ...',
@@ -247,7 +247,8 @@ class _ClientHelpWidgetState extends State<ClientHelpWidget> {
                                     fontFamily: 'Readex Pro',
                                     fontSize: FFAppState().fontSize14,
                                   ),
-                          maxLines: 20,
+                          maxLines: 10,
+                          minLines: 1,
                           validator: _model.messageControllerValidator
                               .asValidator(context),
                         ),

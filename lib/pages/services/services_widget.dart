@@ -72,11 +72,10 @@ class _ServicesWidgetState extends State<ServicesWidget>
                   Expanded(
                     child: TabBarView(
                       controller: _model.tabBarController,
-                      children: [
-                        ListView(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.vertical,
-                          children: const [],
+                      children: const [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [],
                         ),
                       ],
                     ),
@@ -146,13 +145,12 @@ class _ServicesWidgetState extends State<ServicesWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, -0.97),
+                alignment: const AlignmentDirectional(0.0, -0.9),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 324.0,
-                    height: 152.0,
+                    width: 150.0,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -193,7 +191,7 @@ class _ServicesWidgetState extends State<ServicesWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -1.0),
+                alignment: const AlignmentDirectional(-0.95, -0.9),
                 child: FlutterFlowIconButton(
                   borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                   borderRadius: 20.0,

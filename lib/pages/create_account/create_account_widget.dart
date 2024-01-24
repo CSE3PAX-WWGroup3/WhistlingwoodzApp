@@ -92,7 +92,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    height: 165.0,
+                    width: 150.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -115,6 +115,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         controller: _model.emailAddressController,
                         focusNode: _model.emailAddressFocusNode,
                         autofocus: true,
+                        textInputAction: TextInputAction.done,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Email Address',

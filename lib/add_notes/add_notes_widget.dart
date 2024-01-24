@@ -99,112 +99,263 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                     decoration: const BoxDecoration(
                       color: Color(0xFF800306),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 10.0, 10.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: const Color(0xFF0E0E0E),
-                                icon: Icon(
-                                  Icons.home,
-                                  color: FlutterFlowTheme.of(context)
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 10.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FlutterFlowIconButton(
+                                  borderColor: FlutterFlowTheme.of(context)
                                       .primaryBtnText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'ADD_NOTES_PAGE_home_ICN_ON_TAP');
-                                  logFirebaseEvent('IconButton_navigate_to');
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor: const Color(0xFF0E0E0E),
+                                  icon: Icon(
+                                    Icons.home,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'ADD_NOTES_PAGE_home_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_navigate_to');
 
-                                  context.pushNamed('LandingPage');
-                                },
-                              ),
-                              FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: const Color(0xFF0E0E0E),
-                                icon: const Icon(
-                                  Icons.chevron_left,
-                                  color: Colors.white,
-                                  size: 24.0,
+                                    context.pushNamed('LandingPage');
+                                  },
                                 ),
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'ADD_NOTES_PAGE_chevron_left_ICN_ON_TAP');
-                                  logFirebaseEvent('IconButton_navigate_back');
-                                  context.safePop();
-                                },
-                              ),
-                            ].divide(const SizedBox(width: 10.0)),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/MicrosoftTeams-image_(11).png',
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              widget.eventID?.id,
-                              'event ID',
+                                FlutterFlowIconButton(
+                                  borderColor: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor: const Color(0xFF0E0E0E),
+                                  icon: const Icon(
+                                    Icons.chevron_left,
+                                    color: Colors.white,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'ADD_NOTES_PAGE_chevron_left_ICN_ON_TAP');
+                                    logFirebaseEvent(
+                                        'IconButton_navigate_back');
+                                    context.safePop();
+                                  },
+                                ),
+                              ].divide(const SizedBox(width: 10.0)),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  fontSize: FFAppState().fontSize14,
-                                ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (widget.isManager ?? true)
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/MicrosoftTeams-image_(11).png',
+                              width: 150.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                widget.eventID?.id,
+                                'event ID',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (widget.isManager ?? true)
+                                  Expanded(
+                                    flex: 1,
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'ADD_NOTES_PAGE_createPDF_ON_TAP');
+                                        logFirebaseEvent(
+                                            'createPDF_custom_action');
+                                        await actions.newEventPDF(
+                                          widget.eventID!,
+                                          addNotesEventsRecord.email,
+                                          addNotesEventsRecord.budget,
+                                          addNotesEventsRecord.eventType,
+                                          addNotesEventsRecord.functions,
+                                          addNotesEventsRecord.numberGuests,
+                                          addNotesEventsRecord.requestTime,
+                                          addNotesEventsRecord.theme,
+                                          addNotesEventsRecord.venue,
+                                        );
+                                      },
+                                      text: 'Create PDF ',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: const Color(0xFF0E0E0E),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.white,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                              ]
+                                  .addToStart(const SizedBox(width: 10.0))
+                                  .addToEnd(const SizedBox(width: 10.0)),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 10.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.messageController,
+                              focusNode: _model.messageFocusNode,
+                              textInputAction: TextInputAction.done,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText:
+                                    'Please input your message here ,,,,',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: FFAppState().fontSize14,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: FFAppState().fontSize14,
+                                    ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: FFAppState().fontSize14,
+                                  ),
+                              maxLines: 4,
+                              minLines: 1,
+                              validator: _model.messageControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 Expanded(
                                   flex: 1,
                                   child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'ADD_NOTES_PAGE_createPDF_ON_TAP');
-                                      logFirebaseEvent(
-                                          'createPDF_custom_action');
-                                      await actions.newEventPDF(
-                                        widget.eventID!,
-                                        addNotesEventsRecord.email,
-                                        addNotesEventsRecord.budget,
-                                        addNotesEventsRecord.eventType,
-                                        addNotesEventsRecord.functions,
-                                        addNotesEventsRecord.numberGuests,
-                                        addNotesEventsRecord.requestTime,
-                                        addNotesEventsRecord.theme,
-                                        addNotesEventsRecord.venue,
-                                      );
-                                    },
-                                    text: 'Create PDF ',
+                                    onPressed: (/* NOT RECOMMENDED */ _model
+                                                .messageController.text ==
+                                            'true')
+                                        ? null
+                                        : () async {
+                                            logFirebaseEvent(
+                                                'ADD_NOTES_PAGE_submitMessage_ON_TAP');
+                                            logFirebaseEvent(
+                                                'submitMessage_backend_call');
+
+                                            await NotesRecord.collection
+                                                .doc()
+                                                .set({
+                                              ...createNotesRecordData(
+                                                docID: widget.eventID,
+                                                isManager: widget.isManager,
+                                                message: _model
+                                                    .messageController.text,
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'dateNote': FieldValue
+                                                      .serverTimestamp(),
+                                                },
+                                              ),
+                                            });
+                                            logFirebaseEvent(
+                                                'submitMessage_navigate_to');
+
+                                            context.pushNamed(
+                                              'addNotes',
+                                              queryParameters: {
+                                                'eventID': serializeParam(
+                                                  widget.eventID,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'isManager': serializeParam(
+                                                  widget.isManager,
+                                                  ParamType.bool,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                    text: 'Submit  Message',
                                     options: FFButtonOptions(
                                       height: 40.0,
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -218,6 +369,7 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            fontSize: FFAppState().fontSize16,
                                           ),
                                       elevation: 3.0,
                                       borderSide: const BorderSide(
@@ -225,163 +377,22 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(20.0),
+                                      disabledColor:
+                                          FlutterFlowTheme.of(context)
+                                              .backgroundComponents,
                                     ),
                                   ),
                                 ),
-                            ]
-                                .addToStart(const SizedBox(width: 10.0))
-                                .addToEnd(const SizedBox(width: 10.0)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.messageController,
-                            focusNode: _model.messageFocusNode,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Please input your message here ,,,,',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: FFAppState().fontSize14,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: FFAppState().fontSize14,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
+                              ]
+                                  .divide(const SizedBox(width: 20.0))
+                                  .addToStart(const SizedBox(width: 10.0))
+                                  .addToEnd(const SizedBox(width: 10.0)),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: FFAppState().fontSize14,
-                                ),
-                            maxLines: 4,
-                            validator: _model.messageControllerValidator
-                                .asValidator(context),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: FFButtonWidget(
-                                  onPressed: (_model.messageController.text == '')
-                                      ? null
-                                      : () async {
-                                          logFirebaseEvent(
-                                              'ADD_NOTES_PAGE_submitMessage_ON_TAP');
-                                          logFirebaseEvent(
-                                              'submitMessage_backend_call');
-
-                                          await NotesRecord.collection
-                                              .doc()
-                                              .set({
-                                            ...createNotesRecordData(
-                                              docID: widget.eventID,
-                                              isManager: widget.isManager,
-                                              message:
-                                                  _model.messageController.text,
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'dateNote': FieldValue
-                                                    .serverTimestamp(),
-                                              },
-                                            ),
-                                          });
-                                          logFirebaseEvent(
-                                              'submitMessage_navigate_to');
-
-                                          context.pushNamed(
-                                            'addNotes',
-                                            queryParameters: {
-                                              'eventID': serializeParam(
-                                                widget.eventID,
-                                                ParamType.DocumentReference,
-                                              ),
-                                              'isManager': serializeParam(
-                                                widget.isManager,
-                                                ParamType.bool,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-                                        },
-                                  text: 'Submit  Message',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: const Color(0xFF0E0E0E),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          fontSize: FFAppState().fontSize16,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    disabledColor: FlutterFlowTheme.of(context)
-                                        .backgroundComponents,
-                                  ),
-                                ),
-                              ),
-                            ]
-                                .divide(const SizedBox(width: 20.0))
-                                .addToStart(const SizedBox(width: 10.0))
-                                .addToEnd(const SizedBox(width: 10.0)),
-                          ),
-                        ),
-                      ]
-                          .divide(const SizedBox(height: 10.0))
-                          .addToEnd(const SizedBox(height: 10.0)),
+                        ]
+                            .divide(const SizedBox(height: 10.0))
+                            .addToEnd(const SizedBox(height: 10.0)),
+                      ),
                     ),
                   ),
                   Expanded(

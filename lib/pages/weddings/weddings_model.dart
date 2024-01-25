@@ -37,6 +37,8 @@ class WeddingsModel extends FlutterFlowModel<WeddingsWidget> {
   String? eventID;
   // Stores action output result for [Custom Action - listToString] action in Submit widget.
   String? functions;
+  // Stores action output result for [Custom Action - getManagerEmails] action in Submit widget.
+  String? managerEmail;
   // Stores action output result for [Custom Action - submitEvent] action in Submit widget.
   String? submissioResult;
 

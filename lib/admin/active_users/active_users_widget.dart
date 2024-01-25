@@ -98,8 +98,7 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.asset(
                   'assets/images/MicrosoftTeams-image_(11).png',
-                  width: 300.0,
-                  height: 200.0,
+                  width: 150.0,
                   fit: BoxFit.cover,
                 ),
               ),

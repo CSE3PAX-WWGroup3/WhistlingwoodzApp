@@ -58,6 +58,37 @@ class _ClientWidgetState extends State<ClientWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF800306),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              logFirebaseEvent('CLIENT_PAGE_Back_ON_TAP');
+              logFirebaseEvent('Back_navigate_back');
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Your Event Requests',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -82,25 +113,24 @@ class _ClientWidgetState extends State<ClientWidget> {
                           buttonSize: 40.0,
                           fillColor: const Color(0xFF0E0E0E),
                           icon: const Icon(
-                            Icons.arrow_back,
+                            Icons.home_sharp,
                             color: Colors.white,
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'CLIENT_PAGE_arrow_back_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_navigate_back');
-                            context.pop();
+                            logFirebaseEvent('CLIENT_PAGE_Home_ON_TAP');
+                            logFirebaseEvent('Home_navigate_to');
+
+                            context.pushNamed('LandingPage');
                           },
                         ),
-                      ],
+                      ].addToStart(const SizedBox(width: 10.0)),
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                         'assets/images/MicrosoftTeams-image_(11).png',
-                        width: 300.0,
-                        height: 200.0,
+                        width: 150.0,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -121,6 +151,7 @@ class _ClientWidgetState extends State<ClientWidget> {
                           ),
                     ),
                   ]
+                      .divide(const SizedBox(height: 10.0))
                       .addToStart(const SizedBox(height: 10.0))
                       .addToEnd(const SizedBox(height: 10.0)),
                 ),
@@ -132,8 +163,8 @@ class _ClientWidgetState extends State<ClientWidget> {
                       EventsRecord>.separated(
                     pagingController: _model.setListViewController(
                       EventsRecord.collection.where(
-                        'email',
-                        isEqualTo: currentUserEmail,
+                        'uid',
+                        isEqualTo: currentUserUid,
                       ),
                     ),
                     padding: EdgeInsets.zero,

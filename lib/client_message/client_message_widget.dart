@@ -104,6 +104,14 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/MicrosoftTeams-image_(11).png',
+                    width: 150.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 Container(
                   decoration: const BoxDecoration(
                     color: Color(0xFF800306),
@@ -131,7 +139,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize22,
+                                          fontSize: FFAppState().fontSize18,
                                         ),
                                   ),
                                 ),
@@ -357,6 +365,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                         child: TextFormField(
                           controller: _model.messageController,
                           focusNode: _model.messageFocusNode,
+                          textInputAction: TextInputAction.done,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Input your message here ....',
@@ -409,6 +418,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                                     fontSize: FFAppState().fontSize14,
                                   ),
                           maxLines: 15,
+                          minLines: 1,
                           validator: _model.messageControllerValidator
                               .asValidator(context),
                         ),
@@ -416,7 +426,10 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                     ],
                   ),
                 ),
-              ].divide(const SizedBox(height: 20.0)),
+              ]
+                  .divide(const SizedBox(height: 20.0))
+                  .addToStart(const SizedBox(height: 10.0))
+                  .addToEnd(const SizedBox(height: 10.0)),
             ),
           ),
         ),

@@ -102,8 +102,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 300.0,
-                    height: 200.0,
+                    width: 150.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -256,7 +255,10 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ]
+                .divide(const SizedBox(height: 20.0))
+                .addToStart(const SizedBox(height: 10.0))
+                .addToEnd(const SizedBox(height: 10.0)),
           ),
         ),
       ),

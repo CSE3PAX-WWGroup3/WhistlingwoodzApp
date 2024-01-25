@@ -18,6 +18,14 @@ class UpdateUserProfileModel extends FlutterFlowModel<UpdateUserProfileWidget> {
   FocusNode? surnameFocusNode;
   TextEditingController? surnameController;
   String? Function(BuildContext, String?)? surnameControllerValidator;
+  // State field(s) for phone_number widget.
+  FocusNode? phoneNumberFocusNode;
+  TextEditingController? phoneNumberController;
+  String? Function(BuildContext, String?)? phoneNumberControllerValidator;
+  // State field(s) for email widget.
+  FocusNode? emailFocusNode;
+  TextEditingController? emailController;
+  String? Function(BuildContext, String?)? emailControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -35,6 +43,12 @@ class UpdateUserProfileModel extends FlutterFlowModel<UpdateUserProfileWidget> {
 
     surnameFocusNode?.dispose();
     surnameController?.dispose();
+
+    phoneNumberFocusNode?.dispose();
+    phoneNumberController?.dispose();
+
+    emailFocusNode?.dispose();
+    emailController?.dispose();
   }
 
   /// Action blocks are added here.

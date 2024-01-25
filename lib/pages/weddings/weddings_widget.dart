@@ -128,18 +128,13 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/MicrosoftTeams-image_(11).png',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/MicrosoftTeams-image_(11).png',
+                                          width: 150.0,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ],
@@ -551,6 +546,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               focusNode:
                                                   _model.venueOtherFocusNode,
                                               autofocus: true,
+                                              textInputAction:
+                                                  TextInputAction.done,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: 'Other',
@@ -692,6 +689,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                       .text;
                                             });
                                           },
+                                          textInputAction: TextInputAction.done,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Number Of Guests',
@@ -923,6 +921,11 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                               );
                                               logFirebaseEvent(
                                                   'Submit_custom_action');
+                                              _model.managerEmail =
+                                                  await actions
+                                                      .getManagerEmails();
+                                              logFirebaseEvent(
+                                                  'Submit_custom_action');
                                               _model.submissioResult =
                                                   actions.submitEvent(
                                                 _model.eventID!,
@@ -938,6 +941,8 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                                                 _model.numberGuestsController
                                                     .text,
                                                 _model.budgetValue!,
+                                                currentUserUid,
+                                                _model.managerEmail!,
                                               );
                                               logFirebaseEvent(
                                                   'Submit_backend_call');
@@ -1103,7 +1108,7 @@ class _WeddingsWidgetState extends State<WeddingsWidget>
                 ],
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, -0.87),
+                alignment: const AlignmentDirectional(-0.95, -0.9),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(

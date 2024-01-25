@@ -110,7 +110,7 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                flex: 26,
+                flex: 20,
                 child: Stack(
                   children: [
                     Stack(
@@ -124,21 +124,20 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
                               child: Image.asset(
                                 'assets/images/MicrosoftTeams-image_1.png',
                                 width: double.infinity,
-                                height: double.infinity,
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.85,
                                 fit: BoxFit.contain,
                               ),
                             ),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -0.3),
+                          alignment: const AlignmentDirectional(0.0, -0.8),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
                               'assets/images/MicrosoftTeams-image_(11).png',
-                              width: MediaQuery.sizeOf(context).width < 300.0
-                                  ? FFAppState().screenWidth
-                                  : 300.0,
+                              width: 150.0,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -150,264 +149,272 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
               ),
               Expanded(
                 flex: 1,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(-1.03, 1.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'LANDING_PAGE_PAGE_weddingBtn_ON_TAP');
-                              logFirebaseEvent('weddingBtn_backend_call');
+                child: Align(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.03, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LANDING_PAGE_PAGE_weddingBtn_ON_TAP');
+                                logFirebaseEvent('weddingBtn_backend_call');
 
-                              await currentUserReference!.update({
-                                ...createUsersRecordData(
-                                  lastPage: 'Wedding Event',
-                                ),
-                                ...mapToFirestore(
-                                  {
-                                    'last_active': FieldValue.serverTimestamp(),
-                                  },
-                                ),
-                              });
-                              logFirebaseEvent('weddingBtn_navigate_to');
-
-                              context.pushNamed('weddings');
-
-                              logFirebaseEvent(
-                                  'weddingBtn_google_analytics_event');
-                              logFirebaseEvent('view_item');
-                            },
-                            text: 'Wedding',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12.0,
-                              ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(-0.52, 1.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'LANDING_PAGE_PAGE_partyBtn_ON_TAP');
-                              logFirebaseEvent('partyBtn_backend_call');
-
-                              await currentUserReference!.update({
-                                ...createUsersRecordData(
-                                  lastPage: 'Party Event',
-                                ),
-                                ...mapToFirestore(
-                                  {
-                                    'last_active': FieldValue.serverTimestamp(),
-                                  },
-                                ),
-                              });
-                              logFirebaseEvent('partyBtn_navigate_to');
-
-                              context.pushNamed('Parties');
-
-                              logFirebaseEvent(
-                                  'partyBtn_google_analytics_event');
-                              logFirebaseEvent('view_item');
-                            },
-                            text: 'Party',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    fontSize: 12.0,
+                                await currentUserReference!.update({
+                                  ...createUsersRecordData(
+                                    lastPage: 'Wedding Event',
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(-0.05, 1.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'LANDING_PAGE_PAGE_corporateBtn_ON_TAP');
-                              logFirebaseEvent('corporateBtn_backend_call');
-
-                              await currentUserReference!.update({
-                                ...createUsersRecordData(
-                                  lastPage: 'Corporate Event',
-                                ),
-                                ...mapToFirestore(
-                                  {
-                                    'last_active': FieldValue.serverTimestamp(),
-                                  },
-                                ),
-                              });
-                              logFirebaseEvent('corporateBtn_navigate_to');
-
-                              context.pushNamed('Corporate');
-
-                              logFirebaseEvent(
-                                  'corporateBtn_google_analytics_event');
-                              logFirebaseEvent('view_item');
-                            },
-                            text: 'Corporate',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    fontSize: 12.0,
+                                  ...mapToFirestore(
+                                    {
+                                      'last_active':
+                                          FieldValue.serverTimestamp(),
+                                    },
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                });
+                                logFirebaseEvent('weddingBtn_navigate_to');
+
+                                context.pushNamed('weddings');
+
+                                logFirebaseEvent(
+                                    'weddingBtn_google_analytics_event');
+                                logFirebaseEvent('view_item');
+                              },
+                              text: 'Wedding',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.5, 1.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'LANDING_PAGE_PAGE_serviceBtn_ON_TAP');
-                              logFirebaseEvent('serviceBtn_backend_call');
+                          Align(
+                            alignment: const AlignmentDirectional(-0.52, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LANDING_PAGE_PAGE_partyBtn_ON_TAP');
+                                logFirebaseEvent('partyBtn_backend_call');
 
-                              await currentUserReference!.update({
-                                ...createUsersRecordData(
-                                  lastPage: 'Services',
-                                ),
-                                ...mapToFirestore(
-                                  {
-                                    'last_active': FieldValue.serverTimestamp(),
-                                  },
-                                ),
-                              });
-                              logFirebaseEvent('serviceBtn_navigate_to');
-
-                              context.pushNamed('Services');
-
-                              logFirebaseEvent(
-                                  'serviceBtn_google_analytics_event');
-                              logFirebaseEvent('view_item');
-                            },
-                            text: 'Service',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    fontSize: 12.0,
+                                await currentUserReference!.update({
+                                  ...createUsersRecordData(
+                                    lastPage: 'Party Event',
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.98, 1.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'LANDING_PAGE_PAGE_galleryBtn_ON_TAP');
-                              logFirebaseEvent('galleryBtn_backend_call');
-
-                              await currentUserReference!.update({
-                                ...createUsersRecordData(
-                                  lastPage: 'Gallery',
-                                ),
-                                ...mapToFirestore(
-                                  {
-                                    'last_active': FieldValue.serverTimestamp(),
-                                  },
-                                ),
-                              });
-                              logFirebaseEvent('galleryBtn_navigate_to');
-
-                              context.pushNamed('Gallery');
-
-                              logFirebaseEvent(
-                                  'galleryBtn_google_analytics_event');
-                              logFirebaseEvent('view_item');
-                            },
-                            text: 'Gallery',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Colors.black,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    fontSize: 12.0,
+                                  ...mapToFirestore(
+                                    {
+                                      'last_active':
+                                          FieldValue.serverTimestamp(),
+                                    },
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                });
+                                logFirebaseEvent('partyBtn_navigate_to');
+
+                                context.pushNamed('Parties');
+
+                                logFirebaseEvent(
+                                    'partyBtn_google_analytics_event');
+                                logFirebaseEvent('view_item');
+                              },
+                              text: 'Party',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
-                      ]
-                          .divide(const SizedBox(width: 5.0))
-                          .addToStart(const SizedBox(width: 5.0))
-                          .addToEnd(const SizedBox(width: 5.0)),
+                          Align(
+                            alignment: const AlignmentDirectional(-0.05, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LANDING_PAGE_PAGE_corporateBtn_ON_TAP');
+                                logFirebaseEvent('corporateBtn_backend_call');
+
+                                await currentUserReference!.update({
+                                  ...createUsersRecordData(
+                                    lastPage: 'Corporate Event',
+                                  ),
+                                  ...mapToFirestore(
+                                    {
+                                      'last_active':
+                                          FieldValue.serverTimestamp(),
+                                    },
+                                  ),
+                                });
+                                logFirebaseEvent('corporateBtn_navigate_to');
+
+                                context.pushNamed('Corporate');
+
+                                logFirebaseEvent(
+                                    'corporateBtn_google_analytics_event');
+                                logFirebaseEvent('view_item');
+                              },
+                              text: 'Corporate',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.5, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LANDING_PAGE_PAGE_serviceBtn_ON_TAP');
+                                logFirebaseEvent('serviceBtn_backend_call');
+
+                                await currentUserReference!.update({
+                                  ...createUsersRecordData(
+                                    lastPage: 'Services',
+                                  ),
+                                  ...mapToFirestore(
+                                    {
+                                      'last_active':
+                                          FieldValue.serverTimestamp(),
+                                    },
+                                  ),
+                                });
+                                logFirebaseEvent('serviceBtn_navigate_to');
+
+                                context.pushNamed('Services');
+
+                                logFirebaseEvent(
+                                    'serviceBtn_google_analytics_event');
+                                logFirebaseEvent('view_item');
+                              },
+                              text: 'Service',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.98, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LANDING_PAGE_PAGE_galleryBtn_ON_TAP');
+                                logFirebaseEvent('galleryBtn_backend_call');
+
+                                await currentUserReference!.update({
+                                  ...createUsersRecordData(
+                                    lastPage: 'Gallery',
+                                  ),
+                                  ...mapToFirestore(
+                                    {
+                                      'last_active':
+                                          FieldValue.serverTimestamp(),
+                                    },
+                                  ),
+                                });
+                                logFirebaseEvent('galleryBtn_navigate_to');
+
+                                context.pushNamed('Gallery');
+
+                                logFirebaseEvent(
+                                    'galleryBtn_google_analytics_event');
+                                logFirebaseEvent('view_item');
+                              },
+                              text: 'Gallery',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 5.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Colors.black,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                        ]
+                            .divide(const SizedBox(width: 5.0))
+                            .addToStart(const SizedBox(width: 5.0))
+                            .addToEnd(const SizedBox(width: 5.0)),
+                      ),
                     ),
                   ),
                 ),

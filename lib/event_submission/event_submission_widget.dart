@@ -137,8 +137,7 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     'assets/images/MicrosoftTeams-image_(11).png',
-                    width: 300.0,
-                    height: 200.0,
+                    width: 150.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -470,6 +469,7 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                   child: TextFormField(
                     controller: _model.messageController,
                     focusNode: _model.messageFocusNode,
+                    textInputAction: TextInputAction.done,
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Please enter your feebback here ...',
@@ -521,6 +521,7 @@ class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {
                           fontSize: FFAppState().fontSize14,
                         ),
                     maxLines: 5,
+                    minLines: 1,
                     validator:
                         _model.messageControllerValidator.asValidator(context),
                   ),

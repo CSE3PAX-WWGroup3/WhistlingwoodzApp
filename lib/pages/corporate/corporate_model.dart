@@ -35,6 +35,8 @@ class CorporateModel extends FlutterFlowModel<CorporateWidget> {
   FormFieldController<String>? budgetValueController;
   // Stores action output result for [Custom Action - nextDocID] action in Button widget.
   String? eventID;
+  // Stores action output result for [Custom Action - getManagerEmails] action in Button widget.
+  String? managerEmail;
   // Stores action output result for [Custom Action - submitEvent] action in Button widget.
   String? submissionResult;
 

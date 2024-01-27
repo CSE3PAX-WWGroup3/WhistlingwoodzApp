@@ -16,14 +16,18 @@ The application allows the manager to perform the following functions:
     - list feedback
     - view pdf event request
 
-The following documents have been bundled with the submission are and available to support the application
+The following documents have been bundled with the submission are and available to support the application.
+1. Whistling Woodz Final Project Report
+   - covers the technolgooes and development in detail including, technologies used, local setup, 
+   database configuration, deployment and github usage
+2. Whistling Woodz Event Application End User Documentation
+   - end user help guide
+3. Whistling Woodz Event Application Admin and Manager User Documentation
+    - admin and manager end user help guide
+4. Whistling Woodz Testing Document
+   - test results
 
-
-
-## Getting Started
-
-FlutterFlow projects are built to run on the Flutter _stable_ release.
-
+Further details regarding the design of the applicaition can be found below.
 
 # FRONT END 
 The User Interface was created using FlutterFlow, a web application that employs a user-friendly 

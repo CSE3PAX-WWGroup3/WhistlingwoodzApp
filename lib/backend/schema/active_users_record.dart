@@ -43,8 +43,8 @@ class ActiveUsersRecord extends FirestoreRecord {
           ? parent.collection('activeUsers')
           : FirebaseFirestore.instance.collectionGroup('activeUsers');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('activeUsers').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('activeUsers').doc(id);
 
   static Stream<ActiveUsersRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => ActiveUsersRecord.fromSnapshot(s));

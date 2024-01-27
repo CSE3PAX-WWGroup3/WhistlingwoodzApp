@@ -18,7 +18,7 @@ class WeddingsWidget extends StatefulWidget {
   const WeddingsWidget({super.key});
 
   @override
-  _WeddingsWidgetState createState() => _WeddingsWidgetState();
+  State<WeddingsWidget> createState() => _WeddingsWidgetState();
 }
 
 class _WeddingsWidgetState extends State<WeddingsWidget>

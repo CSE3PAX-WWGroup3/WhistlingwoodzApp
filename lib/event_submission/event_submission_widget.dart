@@ -34,7 +34,7 @@ class EventSubmissionWidget extends StatefulWidget {
   final String? submissionResult;
 
   @override
-  _EventSubmissionWidgetState createState() => _EventSubmissionWidgetState();
+  State<EventSubmissionWidget> createState() => _EventSubmissionWidgetState();
 }
 
 class _EventSubmissionWidgetState extends State<EventSubmissionWidget> {

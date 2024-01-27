@@ -13,7 +13,7 @@ class CreateAccountWidget extends StatefulWidget {
   const CreateAccountWidget({super.key});
 
   @override
-  _CreateAccountWidgetState createState() => _CreateAccountWidgetState();
+  State<CreateAccountWidget> createState() => _CreateAccountWidgetState();
 }
 
 class _CreateAccountWidgetState extends State<CreateAccountWidget> {
@@ -123,13 +123,11 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               FlutterFlowTheme.of(context).labelSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -166,7 +164,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               fontFamily: 'Readex Pro',
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
-                              fontSize: FFAppState().fontSize14,
                             ),
                         validator: _model.emailAddressControllerValidator
                             .asValidator(context),
@@ -187,13 +184,11 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -244,7 +239,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               fontFamily: 'Readex Pro',
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
-                              fontSize: FFAppState().fontSize14,
                             ),
                         maxLength: 14,
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -267,13 +261,11 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
-                                    fontSize: FFAppState().fontSize14,
                                   ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -324,7 +316,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               fontFamily: 'Readex Pro',
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
-                              fontSize: FFAppState().fontSize14,
                             ),
                         maxLength: 14,
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,

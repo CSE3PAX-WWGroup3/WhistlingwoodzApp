@@ -18,7 +18,7 @@ class CorporateWidget extends StatefulWidget {
   const CorporateWidget({super.key});
 
   @override
-  _CorporateWidgetState createState() => _CorporateWidgetState();
+  State<CorporateWidget> createState() => _CorporateWidgetState();
 }
 
 class _CorporateWidgetState extends State<CorporateWidget>

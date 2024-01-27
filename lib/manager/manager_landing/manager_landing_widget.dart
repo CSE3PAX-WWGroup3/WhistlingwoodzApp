@@ -14,7 +14,7 @@ class ManagerLandingWidget extends StatefulWidget {
   const ManagerLandingWidget({super.key});
 
   @override
-  _ManagerLandingWidgetState createState() => _ManagerLandingWidgetState();
+  State<ManagerLandingWidget> createState() => _ManagerLandingWidgetState();
 }
 
 class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
@@ -63,11 +63,9 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -84,7 +82,7 @@ class _ManagerLandingWidgetState extends State<ManagerLandingWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: FFAppState().fontSize32,
+                  fontSize: FFAppState().fontSize18,
                 ),
           ),
           actions: const [],

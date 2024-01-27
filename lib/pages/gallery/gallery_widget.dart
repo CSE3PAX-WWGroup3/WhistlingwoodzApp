@@ -14,7 +14,7 @@ class GalleryWidget extends StatefulWidget {
   const GalleryWidget({super.key});
 
   @override
-  _GalleryWidgetState createState() => _GalleryWidgetState();
+  State<GalleryWidget> createState() => _GalleryWidgetState();
 }
 
 class _GalleryWidgetState extends State<GalleryWidget>

@@ -15,7 +15,7 @@ class LandingPageWidget extends StatefulWidget {
   const LandingPageWidget({super.key});
 
   @override
-  _LandingPageWidgetState createState() => _LandingPageWidgetState();
+  State<LandingPageWidget> createState() => _LandingPageWidgetState();
 }
 
 class _LandingPageWidgetState extends State<LandingPageWidget> {

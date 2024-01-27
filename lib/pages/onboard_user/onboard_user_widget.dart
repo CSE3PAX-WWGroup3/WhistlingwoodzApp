@@ -15,7 +15,7 @@ class OnboardUserWidget extends StatefulWidget {
   const OnboardUserWidget({super.key});
 
   @override
-  _OnboardUserWidgetState createState() => _OnboardUserWidgetState();
+  State<OnboardUserWidget> createState() => _OnboardUserWidgetState();
 }
 
 class _OnboardUserWidgetState extends State<OnboardUserWidget> {
@@ -142,14 +142,12 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize12,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize14,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -192,7 +190,6 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBtnText,
-                                        fontSize: FFAppState().fontSize14,
                                       ),
                                   validator: _model
                                       .displayNameControllerValidator
@@ -225,14 +222,12 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize12,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize14,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -275,7 +270,6 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBtnText,
-                                        fontSize: FFAppState().fontSize14,
                                       ),
                                   validator: _model.firstNameControllerValidator
                                       .asValidator(context),
@@ -300,14 +294,12 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize12,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize14,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -350,7 +342,6 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBtnText,
-                                        fontSize: FFAppState().fontSize14,
                                       ),
                                   validator: _model.surNameControllerValidator
                                       .asValidator(context),
@@ -375,14 +366,12 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize12,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
-                                          fontSize: FFAppState().fontSize14,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -425,7 +414,6 @@ class _OnboardUserWidgetState extends State<OnboardUserWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBtnText,
-                                        fontSize: FFAppState().fontSize14,
                                       ),
                                   validator: _model
                                       .phoneNumberControllerValidator

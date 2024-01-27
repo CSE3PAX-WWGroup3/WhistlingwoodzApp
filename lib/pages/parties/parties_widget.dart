@@ -18,7 +18,7 @@ class PartiesWidget extends StatefulWidget {
   const PartiesWidget({super.key});
 
   @override
-  _PartiesWidgetState createState() => _PartiesWidgetState();
+  State<PartiesWidget> createState() => _PartiesWidgetState();
 }
 
 class _PartiesWidgetState extends State<PartiesWidget>

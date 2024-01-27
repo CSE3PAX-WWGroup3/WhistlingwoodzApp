@@ -17,7 +17,7 @@ class ViewFeedbackWidget extends StatefulWidget {
   final DocumentReference? feedBackDoc;
 
   @override
-  _ViewFeedbackWidgetState createState() => _ViewFeedbackWidgetState();
+  State<ViewFeedbackWidget> createState() => _ViewFeedbackWidgetState();
 }
 
 class _ViewFeedbackWidgetState extends State<ViewFeedbackWidget> {

@@ -22,7 +22,7 @@ class AddNotesWidget extends StatefulWidget {
   final bool? isManager;
 
   @override
-  _AddNotesWidgetState createState() => _AddNotesWidgetState();
+  State<AddNotesWidget> createState() => _AddNotesWidgetState();
 }
 
 class _AddNotesWidgetState extends State<AddNotesWidget> {
@@ -90,6 +90,38 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: const Color(0xFF800306),
+            appBar: AppBar(
+              backgroundColor: const Color(0xFF800306),
+              automaticallyImplyLeading: false,
+              leading: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  logFirebaseEvent('ADD_NOTES_PAGE_arrow_back_ICN_ON_TAP');
+                  logFirebaseEvent('IconButton_navigate_to');
+
+                  context.pushNamed('Manager');
+                },
+              ),
+              title: Text(
+                'Event Messages',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      color: Colors.white,
+                      fontSize: 22.0,
+                    ),
+              ),
+              actions: const [],
+              centerTitle: true,
+              elevation: 2.0,
+            ),
             body: SafeArea(
               top: true,
               child: Column(
@@ -128,26 +160,6 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                     logFirebaseEvent('IconButton_navigate_to');
 
                                     context.pushNamed('LandingPage');
-                                  },
-                                ),
-                                FlutterFlowIconButton(
-                                  borderColor: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: const Color(0xFF0E0E0E),
-                                  icon: const Icon(
-                                    Icons.chevron_left,
-                                    color: Colors.white,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    logFirebaseEvent(
-                                        'ADD_NOTES_PAGE_chevron_left_ICN_ON_TAP');
-                                    logFirebaseEvent(
-                                        'IconButton_navigate_back');
-                                    context.safePop();
                                   },
                                 ),
                               ].divide(const SizedBox(width: 10.0)),
@@ -312,9 +324,7 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                 Expanded(
                                   flex: 1,
                                   child: FFButtonWidget(
-                                    onPressed: (/* NOT RECOMMENDED */ _model
-                                                .messageController.text ==
-                                            'true')
+                                    onPressed: (_model.messageController.text == '')
                                         ? null
                                         : () async {
                                             logFirebaseEvent(
@@ -478,7 +488,7 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                       ),
                                 ),
                                 subtitle: Text(
-                                  listViewNotesRecord.message,
+                                  '${listViewNotesRecord.isManager ? 'Manager - ' : 'Client - '}${listViewNotesRecord.message}',
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -488,7 +498,7 @@ class _AddNotesWidgetState extends State<AddNotesWidget> {
                                 ),
                                 tileColor: listViewNotesRecord.isManager
                                     ? FlutterFlowTheme.of(context).warning
-                                    : FlutterFlowTheme.of(context).tertiary,
+                                    : FlutterFlowTheme.of(context).alternate,
                                 dense: false,
                               ),
                             );

@@ -12,7 +12,7 @@ class AdminWidget extends StatefulWidget {
   const AdminWidget({super.key});
 
   @override
-  _AdminWidgetState createState() => _AdminWidgetState();
+  State<AdminWidget> createState() => _AdminWidgetState();
 }
 
 class _AdminWidgetState extends State<AdminWidget> {
@@ -56,6 +56,37 @@ class _AdminWidgetState extends State<AdminWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF800306),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              logFirebaseEvent('ADMIN_PAGE_arrow_back_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
+              context.pop();
+            },
+          ),
+          title: Text(
+            'User Administration',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -68,52 +99,31 @@ class _AdminWidgetState extends State<AdminWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: Colors.white,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: const Color(0xFF0E0E0E),
-                            icon: const Icon(
-                              Icons.home,
-                              color: Colors.white,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              logFirebaseEvent('ADMIN_PAGE_Home_ON_TAP');
-                              logFirebaseEvent('Home_navigate_to');
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FlutterFlowIconButton(
+                          borderColor: Colors.white,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          fillColor: const Color(0xFF0E0E0E),
+                          icon: const Icon(
+                            Icons.home,
+                            color: Colors.white,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            logFirebaseEvent('ADMIN_PAGE_Home_ON_TAP');
+                            logFirebaseEvent('Home_navigate_to');
 
-                              context.pushNamed('LandingPage');
-                            },
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.white,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: const Color(0xFF0E0E0E),
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              logFirebaseEvent('ADMIN_PAGE_Back_ON_TAP');
-                              logFirebaseEvent('Back_navigate_back');
-                              context.safePop();
-                            },
-                          ),
-                        ]
-                            .divide(const SizedBox(width: 20.0))
-                            .addToStart(const SizedBox(width: 10.0))
-                            .addToEnd(const SizedBox(width: 10.0)),
-                      ),
+                            context.pushNamed('LandingPage');
+                          },
+                        ),
+                      ]
+                          .divide(const SizedBox(width: 20.0))
+                          .addToStart(const SizedBox(width: 10.0))
+                          .addToEnd(const SizedBox(width: 10.0)),
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
@@ -141,6 +151,7 @@ class _AdminWidgetState extends State<AdminWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
+                                      fontSize: FFAppState().fontSize18,
                                     ),
                               ),
                             ),
@@ -150,7 +161,6 @@ class _AdminWidgetState extends State<AdminWidget> {
                     ),
                   ]
                       .divide(const SizedBox(height: 20.0))
-                      .addToStart(const SizedBox(height: 20.0))
                       .addToEnd(const SizedBox(height: 20.0)),
                 ),
               ),
@@ -230,10 +240,7 @@ class _AdminWidgetState extends State<AdminWidget> {
                   ),
                 ),
               ),
-            ]
-                .divide(const SizedBox(height: 10.0))
-                .addToStart(const SizedBox(height: 10.0))
-                .addToEnd(const SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)).addToEnd(const SizedBox(height: 10.0)),
           ),
         ),
       ),

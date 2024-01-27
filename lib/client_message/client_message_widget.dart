@@ -15,7 +15,7 @@ class ClientMessageWidget extends StatefulWidget {
   const ClientMessageWidget({super.key});
 
   @override
-  _ClientMessageWidgetState createState() => _ClientMessageWidgetState();
+  State<ClientMessageWidget> createState() => _ClientMessageWidgetState();
 }
 
 class _ClientMessageWidgetState extends State<ClientMessageWidget> {
@@ -70,11 +70,9 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -83,7 +81,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
             onPressed: () async {
               logFirebaseEvent('CLIENT_MESSAGE_arrow_back_ICN_ON_TAP');
               logFirebaseEvent('IconButton_navigate_back');
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(
@@ -104,6 +102,29 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      FlutterFlowIconButton(
+                        borderColor: Colors.white,
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        fillColor: const Color(0xFF0E0E0E),
+                        icon: const Icon(
+                          Icons.home,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          print('IconButton pressed ...');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -148,42 +169,46 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                           ],
                         ),
                       ),
-                    ].divide(const SizedBox(height: 10.0)),
+                    ]
+                        .addToStart(const SizedBox(height: 10.0))
+                        .addToEnd(const SizedBox(height: 10.0)),
                   ),
                 ),
                 FFButtonWidget(
-                  onPressed: () async {
-                    logFirebaseEvent(
-                        'CLIENT_MESSAGE_SEND_NOTIFICATION_BTN_ON_');
-                    logFirebaseEvent('Button_custom_action');
-                    _model.audience = await actions.getClientEmails(
-                      _model.audienceValue!,
-                    );
-                    logFirebaseEvent('Button_custom_action');
-                    _model.sendMessageResult = actions.sendMessage(
-                      _model.audience!,
-                      'wwmanager2023@gmail.com',
-                      _model.titleController.text,
-                      _model.messageController.text,
-                    );
-                    logFirebaseEvent('Button_navigate_to');
+                  onPressed: (_model.messageController.text == '')
+                      ? null
+                      : () async {
+                          logFirebaseEvent(
+                              'CLIENT_MESSAGE_SEND_NOTIFICATION_BTN_ON_');
+                          logFirebaseEvent('Button_custom_action');
+                          _model.audience = await actions.getClientEmails(
+                            _model.audienceValue!,
+                          );
+                          logFirebaseEvent('Button_custom_action');
+                          _model.sendMessageResult = actions.sendMessage(
+                            _model.audience!,
+                            'wwmanager2023@gmail.com',
+                            _model.titleController.text,
+                            _model.messageController.text,
+                          );
+                          logFirebaseEvent('Button_navigate_to');
 
-                    context.pushNamed(
-                      'sentMessage',
-                      queryParameters: {
-                        'title': serializeParam(
-                          _model.titleController.text,
-                          ParamType.String,
-                        ),
-                        'message': serializeParam(
-                          _model.messageController.text,
-                          ParamType.String,
-                        ),
-                      }.withoutNulls,
-                    );
+                          context.pushNamed(
+                            'sentMessage',
+                            queryParameters: {
+                              'title': serializeParam(
+                                _model.titleController.text,
+                                ParamType.String,
+                              ),
+                              'message': serializeParam(
+                                _model.messageController.text,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
 
-                    setState(() {});
-                  },
+                          setState(() {});
+                        },
                   text: 'Send Notification',
                   options: FFButtonOptions(
                     height: 40.0,
@@ -427,7 +452,7 @@ class _ClientMessageWidgetState extends State<ClientMessageWidget> {
                   ),
                 ),
               ]
-                  .divide(const SizedBox(height: 20.0))
+                  .divide(const SizedBox(height: 10.0))
                   .addToStart(const SizedBox(height: 10.0))
                   .addToEnd(const SizedBox(height: 10.0)),
             ),

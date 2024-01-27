@@ -19,7 +19,7 @@ class UpdateUserProfileWidget extends StatefulWidget {
   final DocumentReference? userInformation;
 
   @override
-  _UpdateUserProfileWidgetState createState() =>
+  State<UpdateUserProfileWidget> createState() =>
       _UpdateUserProfileWidgetState();
 }
 
@@ -101,11 +101,9 @@ class _UpdateUserProfileWidgetState extends State<UpdateUserProfileWidget> {
               backgroundColor: const Color(0xFF800306),
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).primaryBtnText,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: const Color(0xFF0E0E0E),
+                buttonSize: MediaQuery.sizeOf(context).width * 0.9,
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
@@ -718,7 +716,7 @@ class _UpdateUserProfileWidgetState extends State<UpdateUserProfileWidget> {
                                   'UPDATE_USER_PROFILE_saveChanges_ON_TAP');
                               logFirebaseEvent('saveChanges_backend_call');
 
-                              await currentUserReference!
+                              await updateUserProfileUsersRecord.reference
                                   .update(createUsersRecordData(
                                 displayName: _model.displaNameController.text,
                                 firstname: _model.firstNameController.text,

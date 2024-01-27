@@ -15,7 +15,7 @@ class OnboardUserWidget extends StatefulWidget {
   const OnboardUserWidget({super.key});
 
   @override
-  _OnboardUserWidgetState createState() => _OnboardUserWidgetState();
+  State<OnboardUserWidget> createState() => _OnboardUserWidgetState();
 }
 
 class _OnboardUserWidgetState extends State<OnboardUserWidget> {

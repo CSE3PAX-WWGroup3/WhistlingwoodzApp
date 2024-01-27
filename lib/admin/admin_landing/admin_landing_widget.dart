@@ -13,7 +13,7 @@ class AdminLandingWidget extends StatefulWidget {
   const AdminLandingWidget({super.key});
 
   @override
-  _AdminLandingWidgetState createState() => _AdminLandingWidgetState();
+  State<AdminLandingWidget> createState() => _AdminLandingWidgetState();
 }
 
 class _AdminLandingWidgetState extends State<AdminLandingWidget> {
@@ -62,11 +62,9 @@ class _AdminLandingWidgetState extends State<AdminLandingWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -83,7 +81,7 @@ class _AdminLandingWidgetState extends State<AdminLandingWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: FFAppState().fontSize32,
+                  fontSize: FFAppState().fontSize22,
                 ),
           ),
           actions: const [],

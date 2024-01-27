@@ -13,7 +13,7 @@ class ServicesWidget extends StatefulWidget {
   const ServicesWidget({super.key});
 
   @override
-  _ServicesWidgetState createState() => _ServicesWidgetState();
+  State<ServicesWidget> createState() => _ServicesWidgetState();
 }
 
 class _ServicesWidgetState extends State<ServicesWidget>
@@ -164,7 +164,7 @@ class _ServicesWidgetState extends State<ServicesWidget>
                       logFirebaseEvent(
                           'SERVICES_CLICK_HERE_FOR_MORE_INFORMATION');
                       logFirebaseEvent('Button_launch_u_r_l');
-                      await launchURL('https://whistlingwoodz.com.au/services');
+                      await launchURL('https://whistlingwoodz.com.au');
                     },
                     text: 'Click Here for more information about our services',
                     options: FFButtonOptions(

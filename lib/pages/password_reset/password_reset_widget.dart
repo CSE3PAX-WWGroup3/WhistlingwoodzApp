@@ -13,7 +13,7 @@ class PasswordResetWidget extends StatefulWidget {
   const PasswordResetWidget({super.key});
 
   @override
-  _PasswordResetWidgetState createState() => _PasswordResetWidgetState();
+  State<PasswordResetWidget> createState() => _PasswordResetWidgetState();
 }
 
 class _PasswordResetWidgetState extends State<PasswordResetWidget> {

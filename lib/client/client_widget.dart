@@ -14,7 +14,7 @@ class ClientWidget extends StatefulWidget {
   const ClientWidget({super.key});
 
   @override
-  _ClientWidgetState createState() => _ClientWidgetState();
+  State<ClientWidget> createState() => _ClientWidgetState();
 }
 
 class _ClientWidgetState extends State<ClientWidget> {
@@ -62,7 +62,6 @@ class _ClientWidgetState extends State<ClientWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
@@ -82,7 +81,7 @@ class _ClientWidgetState extends State<ClientWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: FFAppState().fontSize22,
                 ),
           ),
           actions: const [],
@@ -124,7 +123,30 @@ class _ClientWidgetState extends State<ClientWidget> {
                             context.pushNamed('LandingPage');
                           },
                         ),
-                      ].addToStart(const SizedBox(width: 10.0)),
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 60.0, 0.0),
+                              child: Text(
+                                currentUserEmail,
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: FFAppState().fontSize16,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
+                          .divide(const SizedBox(width: 20.0))
+                          .addToStart(const SizedBox(width: 10.0))
+                          .addToEnd(const SizedBox(width: 10.0)),
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
@@ -134,21 +156,16 @@ class _ClientWidgetState extends State<ClientWidget> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Text(
-                      'Events for',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
-                            fontSize: FFAppState().fontSize14,
-                          ),
-                    ),
-                    Text(
-                      currentUserEmail,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
-                            fontSize: FFAppState().fontSize14,
-                          ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        'Select document  to  add  additional  information',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.white,
+                              fontSize: FFAppState().fontSize14,
+                            ),
+                      ),
                     ),
                   ]
                       .divide(const SizedBox(height: 10.0))

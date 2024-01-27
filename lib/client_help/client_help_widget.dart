@@ -14,7 +14,7 @@ class ClientHelpWidget extends StatefulWidget {
   const ClientHelpWidget({super.key});
 
   @override
-  _ClientHelpWidgetState createState() => _ClientHelpWidgetState();
+  State<ClientHelpWidget> createState() => _ClientHelpWidgetState();
 }
 
 class _ClientHelpWidgetState extends State<ClientHelpWidget> {
@@ -65,11 +65,9 @@ class _ClientHelpWidgetState extends State<ClientHelpWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: MediaQuery.sizeOf(context).width * 0.2,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -135,35 +133,38 @@ class _ClientHelpWidgetState extends State<ClientHelpWidget> {
                   ),
                 ),
                 FFButtonWidget(
-                  onPressed: () async {
-                    logFirebaseEvent('CLIENT_HELP_SUBMIT_REQUEST_BTN_ON_TAP');
-                    logFirebaseEvent('Button_custom_action');
-                    _model.audience = await actions.getAdminEmails();
-                    logFirebaseEvent('Button_custom_action');
-                    actions.sendMessage(
-                      _model.audience!,
-                      currentUserEmail,
-                      'Admin Help Request',
-                      _model.messageController.text,
-                    );
-                    logFirebaseEvent('Button_navigate_to');
+                  onPressed: (_model.messageController.text == '')
+                      ? null
+                      : () async {
+                          logFirebaseEvent(
+                              'CLIENT_HELP_SUBMIT_REQUEST_BTN_ON_TAP');
+                          logFirebaseEvent('Button_custom_action');
+                          _model.audience = await actions.getAdminEmails();
+                          logFirebaseEvent('Button_custom_action');
+                          actions.sendMessage(
+                            _model.audience!,
+                            currentUserEmail,
+                            'Admin Help Request',
+                            _model.messageController.text,
+                          );
+                          logFirebaseEvent('Button_navigate_to');
 
-                    context.pushNamed(
-                      'sentMessage',
-                      queryParameters: {
-                        'title': serializeParam(
-                          'Admin Help Request',
-                          ParamType.String,
-                        ),
-                        'message': serializeParam(
-                          _model.messageController.text,
-                          ParamType.String,
-                        ),
-                      }.withoutNulls,
-                    );
+                          context.pushNamed(
+                            'sentMessage',
+                            queryParameters: {
+                              'title': serializeParam(
+                                'Admin Help Request',
+                                ParamType.String,
+                              ),
+                              'message': serializeParam(
+                                _model.messageController.text,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
 
-                    setState(() {});
-                  },
+                          setState(() {});
+                        },
                   text: 'Submit Request',
                   options: FFButtonOptions(
                     height: 40.0,

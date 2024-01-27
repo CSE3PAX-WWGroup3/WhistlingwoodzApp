@@ -14,7 +14,7 @@ class ManagerDashboardsWidget extends StatefulWidget {
   const ManagerDashboardsWidget({super.key});
 
   @override
-  _ManagerDashboardsWidgetState createState() =>
+  State<ManagerDashboardsWidget> createState() =>
       _ManagerDashboardsWidgetState();
 }
 
@@ -60,15 +60,36 @@ class _ManagerDashboardsWidgetState extends State<ManagerDashboardsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: AppBar(
-            backgroundColor: const Color(0xFF800306),
-            automaticallyImplyLeading: false,
-            actions: const [],
-            centerTitle: true,
-            elevation: 2.0,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF800306),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              logFirebaseEvent('MANAGER_DASHBOARDS_arrow_back_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
+              context.pop();
+            },
           ),
+          title: Text(
+            'Manager Dashboard',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: FFAppState().fontSize22,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
@@ -102,24 +123,6 @@ class _ManagerDashboardsWidgetState extends State<ManagerDashboardsWidget> {
                             logFirebaseEvent('Home_navigate_to');
 
                             context.pushNamed('LandingPage');
-                          },
-                        ),
-                        FlutterFlowIconButton(
-                          borderColor: const Color(0xFF0E0E0E),
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: const Color(0xFF0E0E0E),
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'MANAGER_DASHBOARDS_PAGE_Back_ON_TAP');
-                            logFirebaseEvent('Back_navigate_back');
-                            context.safePop();
                           },
                         ),
                       ]
@@ -220,7 +223,7 @@ class _ManagerDashboardsWidgetState extends State<ManagerDashboardsWidget> {
                       .addToEnd(const SizedBox(height: 10.0)),
                 ),
               ),
-            ].divide(const SizedBox(height: 10.0)).around(const SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)).addToEnd(const SizedBox(height: 10.0)),
           ),
         ),
       ),

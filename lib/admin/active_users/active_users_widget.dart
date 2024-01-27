@@ -13,7 +13,7 @@ class ActiveUsersWidget extends StatefulWidget {
   const ActiveUsersWidget({super.key});
 
   @override
-  _ActiveUsersWidgetState createState() => _ActiveUsersWidgetState();
+  State<ActiveUsersWidget> createState() => _ActiveUsersWidgetState();
 }
 
 class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
@@ -61,19 +61,17 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('ACTIVE_USERS_PAGE_arrow_back_ICN_ON_TAP');
-              logFirebaseEvent('IconButton_navigate_back');
+              logFirebaseEvent('ACTIVE_USERS_PAGE_Back_ON_TAP');
+              logFirebaseEvent('Back_navigate_back');
               context.pop();
             },
           ),

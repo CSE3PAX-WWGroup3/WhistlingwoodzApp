@@ -13,7 +13,7 @@ class ManagerWidget extends StatefulWidget {
   const ManagerWidget({super.key});
 
   @override
-  _ManagerWidgetState createState() => _ManagerWidgetState();
+  State<ManagerWidget> createState() => _ManagerWidgetState();
 }
 
 class _ManagerWidgetState extends State<ManagerWidget> {
@@ -57,15 +57,36 @@ class _ManagerWidgetState extends State<ManagerWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF800306),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: AppBar(
-            backgroundColor: const Color(0xFF800306),
-            automaticallyImplyLeading: false,
-            actions: const [],
-            centerTitle: true,
-            elevation: 2.0,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF800306),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              logFirebaseEvent('MANAGER_PAGE_Back_ON_TAP');
+              logFirebaseEvent('Back_navigate_back');
+              context.pop();
+            },
           ),
+          title: Text(
+            'Manager Client Requests',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
@@ -83,7 +104,7 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         FlutterFlowIconButton(
-                          borderColor: const Color(0xFF0E0E0E),
+                          borderColor: Colors.white,
                           borderRadius: 20.0,
                           borderWidth: 1.0,
                           buttonSize: 40.0,
@@ -98,23 +119,6 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                             logFirebaseEvent('Home_navigate_to');
 
                             context.pushNamed('LandingPage');
-                          },
-                        ),
-                        FlutterFlowIconButton(
-                          borderColor: const Color(0xFF0E0E0E),
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: const Color(0xFF0E0E0E),
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent('MANAGER_PAGE_Back_ON_TAP');
-                            logFirebaseEvent('Back_navigate_back');
-                            context.safePop();
                           },
                         ),
                       ]
@@ -134,7 +138,7 @@ class _ManagerWidgetState extends State<ManagerWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Colors.white,
-                            fontSize: FFAppState().fontSize16,
+                            fontSize: FFAppState().fontSize18,
                           ),
                     ),
                   ]

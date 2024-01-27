@@ -91,8 +91,8 @@ class ProfilesRecord extends FirestoreRecord {
           ? parent.collection('profiles')
           : FirebaseFirestore.instance.collectionGroup('profiles');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('profiles').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('profiles').doc(id);
 
   static Stream<ProfilesRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => ProfilesRecord.fromSnapshot(s));

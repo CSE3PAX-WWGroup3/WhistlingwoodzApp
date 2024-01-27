@@ -14,7 +14,7 @@ class ClientLandingWidget extends StatefulWidget {
   const ClientLandingWidget({super.key});
 
   @override
-  _ClientLandingWidgetState createState() => _ClientLandingWidgetState();
+  State<ClientLandingWidget> createState() => _ClientLandingWidgetState();
 }
 
 class _ClientLandingWidgetState extends State<ClientLandingWidget> {
@@ -63,11 +63,9 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
           backgroundColor: const Color(0xFF800306),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).primaryBtnText,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            fillColor: const Color(0xFF0E0E0E),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -84,7 +82,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
-                  fontSize: FFAppState().fontSize22,
+                  fontSize: FFAppState().fontSize18,
                 ),
           ),
           actions: const [],
@@ -158,7 +156,7 @@ class _ClientLandingWidgetState extends State<ClientLandingWidget> {
 
                   context.pushNamed('ClientHelp');
                 },
-                text: 'Help Request',
+                text: 'Admin Help Request',
                 options: FFButtonOptions(
                   height: 40.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),

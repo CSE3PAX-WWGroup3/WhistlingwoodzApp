@@ -18,7 +18,7 @@ class SentMessageWidget extends StatefulWidget {
   final String? message;
 
   @override
-  _SentMessageWidgetState createState() => _SentMessageWidgetState();
+  State<SentMessageWidget> createState() => _SentMessageWidgetState();
 }
 
 class _SentMessageWidgetState extends State<SentMessageWidget> {
@@ -87,7 +87,7 @@ class _SentMessageWidgetState extends State<SentMessageWidget> {
             ),
           ),
           title: Text(
-            'Message Sent',
+            'Notification Sent',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,

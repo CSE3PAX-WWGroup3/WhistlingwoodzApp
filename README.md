@@ -1,8 +1,12 @@
 # Whistling Woodz Event App
 
-Whistling Woodz is a mobile event application to support Whistling Woodz Events and Ceremonies website.
+Whistling Woodz is a mobile event application that compliments the Whistling Woodz Events and Ceremonies website.
+https://whistlingwoodz.com.au/
 
-The mobile application allows users to view and submit Wedding 
+The application allows users to perform the following funcitons:
+    - create a profile
+    - submit a wedding request
+    - 
 
 What the project does
 Why the project is useful
@@ -57,5 +61,145 @@ Code structure for Whistlingwoodz mobile application project is a structure whic
   web folder: contains index.html files and png files for icons etc.
   test folder: contains widget_test dart file.
   Other plugins and dependencies files
+         DATABASE CONFIGURATION:
 
+The database used by the Application is the Firebase Cloud Firestore NoSQL database.
+
+The database has collections to store information for the Application.
+
+CLOUD FIRESTORE COLLECTIONS
+
+DOCID
+
+The docID collection is used to help generate the unique 6-character event identifier. It contains a single document (docID) with a single numeric field (nextID) which is incremented when an event submission occurs.
+
+A screenshot of a computer
+
+Description automatically generated
+
+The docID collection.
+
+
+
+EVENTS
+
+The events collection contains all the submitted event requests. The documents in this collection are identified by the unique 6-character identifier outlined above. The fields for this collection are as follows: -
+
+budget		the estimated budget range.
+
+email			the event requester's email address.
+
+eventType		event type (Wedding, Party or Corporate)
+
+functions		event specific requirements.
+
+numberGuests	number of expected guests for the event.
+
+requestTime		time the event request was submitted.
+
+theme			event specific theme for the event.
+
+venue			requested location of the event.
+
+
+
+Example event submission document, for event ID PA001B.
+
+
+
+MAIL
+
+The mail collection is used to send emails for event submission notification and sending informational messages from Whistlingwoodz to their Client base.
+
+
+
+FEEDBACK
+
+The feedback collection is a simple counter of positive and negative feedback received from the client after the event has been submitted.
+
+USER_FEEDBACK
+
+The user_feedback collection is an improved feedback option that allows the client to supply written information as well as the Positive/Negative feedback. The fields for this collection are: -
+
+email			contact email to allow response to the feedback.
+
+feedback		either Positive or Negative.
+
+message		the text message supplied by the client.
+
+timestamp		time the feedback was submitted.
+
+A screenshot of a computer
+
+Description automatically generated
+
+Example of user feedback submission.
+
+USERS
+
+The users collection contains the firebase user authentication information. The fields for the collection are: -
+
+created_time	time user account was created.
+
+display_name	user selected display name.
+
+email			contact email address, used in event submission.
+
+firstname
+
+surname
+
+last_active		time user was last active on the App.
+
+last_page		location in App for the last_active entry.
+
+isManager		if true allows manager permissions on the App.
+
+isAdmin		if true allows admin permissions on the App.
+
+uid			unique identifier for user account.
+
+A screenshot of a computer
+
+Description automatically generated
+
+Example user account document.
+
+NOTES
+
+The notes collection allows communication through the Application between the Manager and Client. The collection contains the following fields: -
+
+dateNote	time the notes message was sent.
+
+docID		document ID of the event that the note is related to.
+
+isManager	is present if the sender of the note is a manager user.
+
+Message	contents of the message being sent.
+
+
+
+Example of a notes document.
+
+
+
+DROP-DOWN MENU COLLECTIONS
+
+The following collections supply the information for the drop-down menus, this ensures the clients submitting requests have access to the latest options. There is one option per document in the collection. budget and venues are common across all event types.
+
+budget, this collection contains the options for the estimated budget for the event request.
+
+venues, this collection contains the options for the venues for the event, there is an "other" option to allow the Client to specify their own venue if they so desire.
+
+corporateFunction, event specific requirements options for corporate events.
+
+corporateTheme, event specific theme options for corporate events.
+
+partyFunction, event specific requirements options for party events.
+
+partyTheme, event specific theme options for party events.
+
+weddingFunction, event specific requirements options for wedding events.
+
+weddingTheme, event specific theme options for wedding events. 
 

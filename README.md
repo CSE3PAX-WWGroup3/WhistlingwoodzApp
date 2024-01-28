@@ -166,14 +166,14 @@ Message	contents of the message being sent.
 DROP-DOWN MENU COLLECTIONS
 The following collections supply the information for the drop-down menus, this ensures the clients 
 submitting requests have access to the latest options. 
-There is one option per document in the collection. budget and venues are common across all event types. 
-budget, this collection contains the options for the estimated budget for the event request.
-venues, this collection contains the options for the venues for the event, there is an "other" 
+There is one option per document in the collection. Budget and venues are common across all event types. 
+    budget - this collection contains the options for the estimated budget for the event request.
+    venues - this collection contains the options for the venues for the event, there is an "other" 
 option to allow the Client to specify their own venue if they so desire.
-corporateFunction, event specific requirements options for corporate events.
-corporateTheme, event specific theme options for corporate events.
-partyFunction, event specific requirements options for party events.
-partyTheme, event specific theme options for party events.
-weddingFunction, event specific requirements options for wedding events.
-weddingTheme, event specific theme options for wedding events. 
+    corporateFunction - event specific requirements options for corporate events.
+    corporateTheme - event specific theme options for corporate events.
+    partyFunction - event specific requirements options for party events.
+    partyTheme - event specific theme options for party events.
+    weddingFunction - event specific requirements options for wedding events. 
+    weddingTheme - event specific theme options for wedding events. 
 

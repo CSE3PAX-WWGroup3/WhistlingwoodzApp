@@ -18,7 +18,7 @@ The application allows the manager to perform the following functions:
 
 The following documents have been bundled with the submission are and available to support the application.
 1. Whistling Woodz Final Project Report
-   - covers the technolgooes and development in detail including, technologies used, local setup, 
+   - covers the technologies and development in detail including, technologies used, local setup, 
    database configuration, deployment and github usage
 2. Whistling Woodz Event Application End User Documentation
    - end user help guide
@@ -27,7 +27,15 @@ The following documents have been bundled with the submission are and available 
 4. Whistling Woodz Testing Document
    - test results
 
-Further details regarding the design of the applicaition can be found below.
+# Permissions and Restrictions Modifying the Code
+Code changes and modifications are restricted to authorised contributors only. No changes should be made 
+to the code without prior authorisation. 
+
+# Requests and Issues
+Requests and issues can be lodged through the issues page. Contributors monitor the page on a regular basis.
+https://github.com/CSE3PAX-WWGroup3/WhistlingwoodzApp/issues
+
+Further details regarding the design of the application can be found below.
 
 # FRONT END 
 The User Interface was created using FlutterFlow, a web application that employs a user-friendly 
@@ -88,8 +96,10 @@ Flutter project and when we use Android Studio as IDE will be as follow:
   Other plugins and dependencies files
          DATABASE CONFIGURATION:
 
+#Database
 The database used by the Application is the Firebase Cloud Firestore NoSQL database.
 The database has collections to store information for the Application.
+
 CLOUD FIRESTORE COLLECTIONS
 DOCID
 The docID collection is used to help generate the unique 6-character event identifier. It contains 
@@ -111,8 +121,6 @@ requestTime		time the event request was submitted.
 theme			event specific theme for the event.
 venue			requested location of the event.
 
-Example event submission document, for event ID PA001B.
-
 MAIL
 The mail collection is used to send emails for event submission notification and sending 
 informational messages from Whistlingwoodz to their Client base.
@@ -132,7 +140,7 @@ timestamp		time the feedback was submitted.
 Description automatically generated
 Example of user feedback submission.
 
-USERS
+# USERS
 The users collection contains the firebase user authentication information. The fields for the collection are: -
 created_time	time user account was created.
 display_name	user selected display name.
@@ -155,11 +163,10 @@ docID		document ID of the event that the note is related to.
 isManager	is present if the sender of the note is a manager user.
 Message	contents of the message being sent.
 
-Example of a notes document.
 DROP-DOWN MENU COLLECTIONS
 The following collections supply the information for the drop-down menus, this ensures the clients 
-submitting requests have access to the latest options. There is one option per document in the 
-collection. budget and venues are common across all event types. 
+submitting requests have access to the latest options. 
+There is one option per document in the collection. budget and venues are common across all event types. 
 budget, this collection contains the options for the estimated budget for the event request.
 venues, this collection contains the options for the venues for the event, there is an "other" 
 option to allow the Client to specify their own venue if they so desire.

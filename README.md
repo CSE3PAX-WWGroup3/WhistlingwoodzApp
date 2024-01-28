@@ -4,17 +4,17 @@ Whistling Woodz is a mobile event application that compliments the Whistling Woo
 https://whistlingwoodz.com.au/
 
 The application allows users to perform the following functions:
-    - create a profile
-    - submit a wedding request
-    - submit a party request
-    - submit a coprorate request
-    - view a gallery of photos
-    - leave feedback
+- create a profile
+- submit a wedding request
+- submit a party request
+- submit a coprorate request
+- view a gallery of photos
+- leave feedback
 The application allows the manager to perform the following functions:
-    - send a message to a client
-    - download a csv file
-    - list feedback
-    - view pdf event request
+- send a message to a client
+- download a csv file
+- list feedback
+- view pdf event request
 
 The following documents have been bundled with the submission are and available to support the application.
 1. Whistling Woodz Final Project Report
@@ -140,7 +140,7 @@ timestamp		time the feedback was submitted.
 Description automatically generated
 Example of user feedback submission.
 
-# USERS
+# Users
 The users collection contains the firebase user authentication information. The fields for the collection are: -
 created_time	time user account was created.
 display_name	user selected display name.
@@ -167,13 +167,13 @@ DROP-DOWN MENU COLLECTIONS
 The following collections supply the information for the drop-down menus, this ensures the clients 
 submitting requests have access to the latest options. 
 There is one option per document in the collection. Budget and venues are common across all event types. 
-    budget - this collection contains the options for the estimated budget for the event request.
-    venues - this collection contains the options for the venues for the event, there is an "other" 
+- budget: this collection contains the options for the estimated budget for the event request.
+- venues: this collection contains the options for the venues for the event, there is an "other" 
 option to allow the Client to specify their own venue if they so desire.
-    corporateFunction - event specific requirements options for corporate events.
-    corporateTheme - event specific theme options for corporate events.
-    partyFunction - event specific requirements options for party events.
-    partyTheme - event specific theme options for party events.
-    weddingFunction - event specific requirements options for wedding events. 
-    weddingTheme - event specific theme options for wedding events. 
+- corporateFunction: event specific requirements options for corporate events.
+- corporateTheme: event specific theme options for corporate events.
+- partyFunction: event specific requirements options for party events.
+- partyTheme: event specific theme options for party events.
+- weddingFunction: event specific requirements options for wedding events. 
+- weddingTheme: event specific theme options for wedding events. 
 

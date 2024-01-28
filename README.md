@@ -37,7 +37,7 @@ https://github.com/CSE3PAX-WWGroup3/WhistlingwoodzApp/issues
 
 Further details regarding the design of the application can be found below.
 
-# FRONT END 
+# Front End 
 The User Interface was created using FlutterFlow, a web application that employs a user-friendly 
 "no code" approach to creating an application. FlutterFlow allows for live testing and instant reload 
 while developing the application, and once ready for deployment, converts the design into a Flutter 
@@ -49,7 +49,7 @@ To address the Project requirements, we used assets such as forms, login and aut
 galleries, web links and were able through actions to program these to direct information to the 
 Back End and the Whistlingwoodz Events website.
 
-# BACK END 
+# Back End 
 The Back End of the application uses Firebase Firestore and Google Analytics to meet the requirements 
 and functionality required of the application. These include database storage and retrieval of 
 information for user profiles, client details and the event enquiries. Access to dashboards within 
@@ -62,7 +62,7 @@ formats for ease of reporting to Whistlingwoodz Executives, which are accessible
 We have used Firebase Authentication to control access to Administrator and Manager Interfaces in 
 order to meet their various requirements.
  
-# CODE STRUCTURE:
+# Code Structure:
 Code structure for Whistlingwoodz mobile application project is a structure which is applied in a 
 Flutter project and when we use Android Studio as IDE will be as follow: 
   .dart_tool folder:

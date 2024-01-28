@@ -10,6 +10,7 @@ The application allows users to perform the following functions:
 - submit a coprorate request
 - view a gallery of photos
 - leave feedback
+
 The application allows the manager to perform the following functions:
 - send a message to a client
 - download a csv file
